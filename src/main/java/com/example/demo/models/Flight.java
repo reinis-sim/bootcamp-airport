@@ -1,5 +1,6 @@
 package com.example.demo.models;
 
+import java.sql.Time;
 import java.util.Collection;
 
 import javax.persistence.Column;
@@ -8,8 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -18,35 +19,40 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Getter @Setter @NoArgsConstructor @ToString
-@Table(name = "AirportTable")
+@Table(name = "FlightTable")
 @Entity
-public class Airport {
-	
-	
+public class Flight {
 	
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="ID_Airport")
+	@Column(name="ID_Flight")
 	@Setter(AccessLevel.NONE)
-	private int ID_Airport;
+	private int ID_Flight;
 	
 	
-	@Size(min = 3, max = 20)
-	@Pattern(regexp = "[a-zA-Z\\s]+$", message = "Only letters and spaces")
-	@Column(name = "Title")
-	private String title;
+	@Column(name = "Time")
+	private float time; //TODO change to Time data type
+	
+	
+	@Min(0)
+	@Max(10)
+	@Column(name = "Duration")
+	private float duration;
+	
+	private Collection<Airport> airports;
+	
+	
+	@Min(0)
+	@Max(10)
+	@Column(name = "MaxNumberOfPassangers")
+	private int maxNumberOfPassangers;
+	
+	private Collection<BoardingPass> boardingPasses;
 	
 	
 	
 	
-	private Collection<Flight> flights;
-	
-	
-	
-	
-	
-	private Location loacation;
 	
 
 }
