@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
-public class UserDetails implements org.springframework.security.core.userdetails.UserDetails {
+public class MyUserDetails implements org.springframework.security.core.userdetails.UserDetails {
 	private String email;
 	private String password;
 	private List<GrantedAuthority>roles;
@@ -41,11 +41,10 @@ public class UserDetails implements org.springframework.security.core.userdetail
 
 	@Override
 	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 	
-	public UserDetails(User user) {
+	public MyUserDetails(User user) {
 		super();
 		this.email = user.getEmail();
 		this.password = user.getPassword();

@@ -50,15 +50,20 @@ public class User {
 	public void setEnabled(boolean isEnabled) {
 		this.isEnabled = isEnabled;
 	}
-	public User(String email, String password) {
+	
+	public User(String email, String password, String roles, boolean isEnabled) {
 		super();
 		this.email = email;
 		this.password = password;
+		this.roles = roles;
+		this.isEnabled = isEnabled;
 	}
 	public User() {
 		super();
 		this.email = null;
 		this.password = null;
+		this.roles = null;
+		this.isEnabled = true;
 	}
 	@Override
 	public String toString() {

@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.models.User;
+import com.example.demo.models.MyUserDetails;
 import com.example.demo.repos.IUserRepo;
 
 @Service
@@ -19,6 +20,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		if(user == null) {
 			throw new UsernameNotFoundException(email);
 		}
-		return new UserDetails(user);
+		return new MyUserDetails(user);
 	}
 }
