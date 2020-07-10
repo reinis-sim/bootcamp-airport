@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -40,8 +41,16 @@ public class Location {
 	private String country;
 	
 	
-
+	@ManyToOne
 	private Airport airport;
+	
+	
+	
+	
+	
+	
+	
+	
 
 
 
