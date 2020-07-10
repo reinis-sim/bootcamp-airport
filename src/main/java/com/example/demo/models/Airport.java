@@ -46,7 +46,7 @@ public class Airport {
 	
 	
 	
-	@OneToMany
+	@OneToMany(mappedBy = "airport")
 	private Location loacation;
 	
 	
