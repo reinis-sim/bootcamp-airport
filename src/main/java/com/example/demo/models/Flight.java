@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -40,6 +41,8 @@ public class Flight {
 	@Column(name = "Duration")
 	private float duration;
 	
+	
+	@ManyToMany(mappedBy = "")
 	private Collection<Airport> airports;
 	
 	
@@ -47,6 +50,7 @@ public class Flight {
 	@Max(10)
 	@Column(name = "MaxNumberOfPassangers")
 	private int maxNumberOfPassangers;
+	
 	
 	private Collection<BoardingPass> boardingPasses;
 	

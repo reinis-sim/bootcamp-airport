@@ -43,7 +43,9 @@ public class Location {
 	
 	
 	@ManyToOne
+
 	@JoinColumn(name = "ID_Airport")
+
 	private Airport airport;
 	
 	
