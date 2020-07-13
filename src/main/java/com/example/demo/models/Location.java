@@ -1,11 +1,15 @@
 package com.example.demo.models;
 
+import java.util.Collection;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -41,8 +45,8 @@ public class Location {
 	private String country;
 	
 	
-	@ManyToOne
-	private Airport airport;
+	@OneToMany(mappedBy = "location")
+	private Collection<Airport> airport;
 	
 	
 	
@@ -56,11 +60,11 @@ public class Location {
 
 	public Location(
 			@Size(min = 3, max = 15) @Pattern(regexp = "[a-zA-Z\\s]+$", message = "Only letters and spaces") String city,
-			@Size(min = 3, max = 15) @Pattern(regexp = "[a-zA-Z\\s]+$", message = "Only letters and spaces") String country, Airport airport) {
+			@Size(min = 3, max = 15) @Pattern(regexp = "[a-zA-Z\\s]+$", message = "Only letters and spaces") String country/*, Airport airport*/) {
 		super();
 		this.city = city;
 		this.country = country;
-		this.airport = airport;
+	//	this.airport = (Collection<Airport>) airport;
 	}
 	
 	
