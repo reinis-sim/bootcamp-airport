@@ -21,7 +21,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Getter @Setter @NoArgsConstructor @ToString
-@Table(name = "CustomerTable")
+@Table(name = "LocationTable")
 @Entity
 public class Location {
 	
