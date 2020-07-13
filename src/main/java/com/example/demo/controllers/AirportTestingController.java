@@ -21,6 +21,7 @@ import com.example.demo.repos.IUserRepo;
 import com.example.demo.services.IUserService;
 import com.example.demo.services.impl.EmailServiceImpl;
 
+
 @Controller
 public class AirportTestingController {
 	@Autowired
@@ -100,5 +101,6 @@ public class AirportTestingController {
 		//myEmail.sendEmail("email@email.lv",bo1 );
 		
 		return "error";
+
 	}
 }
