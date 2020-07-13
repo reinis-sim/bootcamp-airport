@@ -1,5 +1,6 @@
 package com.example.demo.services.impl;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +16,11 @@ import com.example.demo.repos.IBoardingPassRepo;
 import com.example.demo.repos.IFlightRepo;
 import com.example.demo.repos.IUserRepo;
 import com.example.demo.services.IUserService;
+import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
-import com.itextpdf.text.pdf.PdfDocument;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
 
 @Service
 public class UserServiceImpl implements IUserService {
@@ -79,16 +82,23 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	@Override
-	public PdfDocument exportBookedFlightAsPDF(BoardingPass boardingPass) {
-		PdfDocument pdfDoc = new PdfDocument();
-		pdfDoc.newPage();
+	public Document exportBookedFlightAsPDF(BoardingPass boardingPass , ByteArrayOutputStream outputStream) {
+		//TODO FORMAT PDF, so far it only prints toString
+		Document doc = new Document();
 		try {
-			pdfDoc.add((Element) boardingPass);
+			PdfWriter.getInstance(doc, outputStream );//new FileOutputStream("temp.pdf")
+			doc.open();
+			Paragraph p = new Paragraph();
+			p.add(boardingPass.toString());
+			p.setAlignment(Element.ALIGN_CENTER);
+			doc.add(p);
 		} catch (DocumentException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		pdfDoc.close();
-		return pdfDoc;
+		
+		doc.close();
+		return doc;
 	}
 	
 	@Override

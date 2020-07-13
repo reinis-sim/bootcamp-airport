@@ -19,6 +19,7 @@ import com.example.demo.repos.ILocationRepo;
 import com.example.demo.repos.ILuggageRepo;
 import com.example.demo.repos.IUserRepo;
 import com.example.demo.services.IUserService;
+import com.example.demo.services.impl.EmailServiceImpl;
 
 @Controller
 public class AirportTestingController {
@@ -43,6 +44,8 @@ public class AirportTestingController {
 	@Autowired
 	IUserService userService;
 	
+	@Autowired
+	EmailServiceImpl myEmail;
 	
 	@GetMapping("/")
 	String test() {
@@ -91,7 +94,11 @@ public class AirportTestingController {
 		System.out.println("Booked flights by user");
 		System.out.println(userService.selectBookedFlightsByUser(userRepo.findByEmail("email@email.com")));
 		System.out.println("One booked flight by boardingpass");
-		System.out.println(userService.selectOneBookedFlightByUser(boardingPassRepo.findById(14).get()));
+		//System.out.println(userService.selectOneBookedFlightByUser(boardingPassRepo.findById(14).get()));
+		System.out.println("Saving PDF");
+		
+		//myEmail.sendEmail("email@email.lv",bo1 );
+		
 		return "error";
 	}
 }

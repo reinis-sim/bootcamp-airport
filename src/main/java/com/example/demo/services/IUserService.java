@@ -1,5 +1,6 @@
 package com.example.demo.services;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
 import com.example.demo.models.Airport;
@@ -7,7 +8,7 @@ import com.example.demo.models.BoardingPass;
 import com.example.demo.models.Flight;
 import com.example.demo.models.Luggage;
 import com.example.demo.models.User;
-import com.itextpdf.text.pdf.PdfDocument;
+import com.itextpdf.text.Document;
 
 public interface IUserService {
 	boolean register(String name, String surname, String email, String password);
@@ -16,6 +17,6 @@ public interface IUserService {
 	ArrayList<Flight>selectAllFlights();
 	ArrayList<Flight>selectAllFlightsInAirport(Airport airport);
 	ArrayList<Flight>selectBookedFlightsByUser(User user);
-	PdfDocument exportBookedFlightAsPDF(BoardingPass boardingPass);
+	Document exportBookedFlightAsPDF(BoardingPass boardingPass, ByteArrayOutputStream outputStream);
 	Flight selectOneBookedFlightByUser(BoardingPass boardingPass);
 }
