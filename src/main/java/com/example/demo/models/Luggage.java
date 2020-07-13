@@ -1,6 +1,10 @@
 package com.example.demo.models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -8,6 +12,12 @@ import javax.validation.constraints.Min;
 @Table(name = "Luggage")
 @Entity
 public class Luggage {
+	
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="ID_Luggage")
+	private int ID_Luggage;
 	
 	
 	//PRICE FOR LUGGAGE
@@ -21,7 +31,7 @@ public class Luggage {
 	
 	//BOARDING PASS
 	@ManyToOne
-	@JoinColumn(name="BP_ID")
+	@JoinColumn(name="ID_BoardingPass")
 	private BoardingPass boardingPass;
 
 	
@@ -52,6 +62,11 @@ public class Luggage {
 	public void setBoardingPass(BoardingPass boardingPass) {
 		this.boardingPass = boardingPass;
 	}
+	public int getID_Luggage() {
+		return ID_Luggage;
+	}
+	
+	
 	
 	
 }
