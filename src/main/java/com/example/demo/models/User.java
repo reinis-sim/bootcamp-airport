@@ -1,10 +1,13 @@
 package com.example.demo.models;
 
+import java.util.Collection;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
@@ -28,10 +31,16 @@ public class User {
 	@Size(min = 5, message = "Password must be atleast 5 characters long")
 	@Column(name="Password")
 	private String password;
+	
 	@Column(name="Roles")
 	private String roles;
+	
 	@Column(name="IsEnabled")
 	private boolean isEnabled;
+	
+	@OneToMany(mappedBy = "user")
+	private Collection<BoardingPass> boardingPasses;
+	
 	
 	public int getId_user() {
 		return id_user;

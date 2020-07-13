@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.stereotype.Service;
 
 import com.example.demo.models.Airport;
 import com.example.demo.models.BoardingPass;
@@ -18,6 +19,7 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.pdf.PdfDocument;
 
+@Service
 public class UserServiceImpl implements IUserService {
 
 	@Autowired
@@ -51,7 +53,7 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public boolean bookFlight(User user, Flight flight, ArrayList<Luggage>allLuggage) {
-		if(boardingRepo.existsByUserAndFlight(user, flight)) {
+		if(!boardingRepo.existsByUserAndFlight(user, flight)) {
 			//TODO create seat logic
 			boardingRepo.save(new BoardingPass(flight, user, 0, allLuggage));
 			return true;
@@ -67,7 +69,8 @@ public class UserServiceImpl implements IUserService {
 	
 	@Override
 	public ArrayList<Flight> selectAllFlightsInAirport(Airport airport) {
-		return flightRepo.findAllByAirport(airport);
+		//TODO doesnt work ?
+		return flightRepo.findAllByAirports(airport);
 	}
 	
 	@Override

@@ -9,8 +9,8 @@ import com.example.demo.models.BoardingPass;
 import com.example.demo.models.Flight;
 import com.example.demo.models.User;
 
-public interface IFlightRepo extends CrudRepository<Flight, Integer>{
-	ArrayList<Flight> findAllByAirport(Airport airport);
+public interface IFlightRepo extends CrudRepository<Flight, Integer> {
+	ArrayList<Flight> findAllByAirports(Airport airport);
 	ArrayList<Flight> findAllByBoardingPassesUser(User user);
 	Flight findByBoardingPasses(BoardingPass boardingPass);
 }

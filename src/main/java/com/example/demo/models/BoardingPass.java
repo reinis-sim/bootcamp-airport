@@ -23,7 +23,8 @@ public class BoardingPass {
 	private int ID_BPass;
 	
 	//FLIGHT
-	@Column(name="ID_Flight")
+	@ManyToOne
+	@JoinColumn(name = "ID_Flight")
 	private Flight flight;
 	
 	
@@ -46,6 +47,14 @@ public class BoardingPass {
 	public BoardingPass() {
 		
 	}
+	public BoardingPass(Flight flight, User user, int seat) {
+		super();
+		this.flight = flight;
+		this.user = user;
+		this.seat = seat;
+	
+	}
+	
 	public BoardingPass(Flight flight, User user, int seat, Collection<Luggage> allLuggage) {
 		super();
 		this.flight = flight;
