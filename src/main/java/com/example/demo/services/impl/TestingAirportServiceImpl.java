@@ -65,6 +65,7 @@ public class TestingAirportServiceImpl {
 		
 		User u1 = new User("name1","surname1","123@gmail", "parole123", "ROLE_ADMIN", true);
 		User u2 = new User("name2","surname2","abc@gmail", "paro321", "ROLE_USER", true);
+
 		userRepo.save(u1);
 		userRepo.save(u2);
 		
