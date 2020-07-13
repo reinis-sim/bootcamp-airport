@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Getter @Setter @NoArgsConstructor @ToString
+
 @Table(name = "AirportTable")
 @Entity
 public class Airport {
@@ -33,7 +33,6 @@ public class Airport {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="ID_Airport")
-	@Setter(AccessLevel.NONE)
 	private int ID_Airport;
 	
 	
@@ -54,7 +53,11 @@ public class Airport {
 	@JoinColumn(name = "ID_Location")
 	private Location location;
 
-
+	
+	public Airport()
+	{
+		
+	}
 
 
 	public Airport(
@@ -85,6 +88,51 @@ public class Airport {
 			{flights.add(flight);
 			return true;}
 	}
+
+
+	public String getTitle() {
+		return title;
+	}
+
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+
+	public Collection<Flight> getFlights() {
+		return flights;
+	}
+
+
+	public void setFlights(Collection<Flight> flights) {
+		this.flights = flights;
+	}
+
+
+	public Location getLocation() {
+		return location;
+	}
+
+
+	public void setLocation(Location location) {
+		this.location = location;
+	}
+
+
+	public int getID_Airport() {
+		return ID_Airport;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Airport [ID_Airport=" + ID_Airport + ", title=" + title + ", flights=" + flights + ", location="
+				+ location + "]";
+	}
+	
+	
+	
 	
 	
 	

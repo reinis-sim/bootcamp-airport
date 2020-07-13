@@ -1,24 +1,5 @@
 package com.example.demo.controllers;
-/*
-<<<<<<< HEAD
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 
-import com.example.demo.services.ITestingAirportService;
-
-@Controller
-public class AirportTestingController {
-	
-	@Autowired
-	ITestingAirportService testService;
-
-	@GetMapping("/test")
-	public String getTest()
-	{
-		testService.testModelsLayer();
-		return "hello-page";
-*/
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
