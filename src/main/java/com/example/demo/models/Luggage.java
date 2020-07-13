@@ -21,7 +21,7 @@ public class Luggage {
 	
 	//BOARDING PASS
 	@ManyToOne
-	@JoinColumn(name="BP_ID")
+	@JoinColumn(name="ID_BoardingPass")
 	private BoardingPass boardingPass;
 
 	

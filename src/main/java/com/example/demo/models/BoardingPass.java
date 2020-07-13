@@ -23,7 +23,8 @@ public class BoardingPass {
 	private int ID_BPass;
 	
 	//FLIGHT
-	@Column(name="ID_Flight")
+	@ManyToOne
+	@JoinColumn(name = "ID_Flight")
 	private Flight flight;
 	
 	

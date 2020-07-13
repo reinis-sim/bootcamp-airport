@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -42,7 +43,7 @@ public class Flight {
 	private float duration;
 	
 	
-	@ManyToMany(mappedBy = "")
+	@ManyToMany(mappedBy = "flights")
 	private Collection<Airport> airports;
 	
 	
@@ -52,7 +53,21 @@ public class Flight {
 	private int maxNumberOfPassangers;
 	
 	
+	@OneToMany(mappedBy = "flight")
 	private Collection<BoardingPass> boardingPasses;
+
+
+	public Flight(float time, @Min(0) @Max(10) float duration, Collection<Airport> airports,
+			@Min(0) @Max(10) int maxNumberOfPassangers, Collection<BoardingPass> boardingPasses) {
+		super();
+		this.time = time;
+		this.duration = duration;
+		this.airports = airports;
+		this.maxNumberOfPassangers = maxNumberOfPassangers;
+		this.boardingPasses = boardingPasses;
+	}
+	
+	
 	
 	
 	
