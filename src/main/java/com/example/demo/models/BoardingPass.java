@@ -89,6 +89,11 @@ public class BoardingPass {
 	public int getID_BPass() {
 		return ID_BPass;
 	}
+	@Override
+	public String toString() {
+		return "BoardingPass [ID_BPass=" + ID_BPass + ", flight=" + flight + ", user=" + user + ", seat=" + seat
+				+ ", allLuggage=" + allLuggage + "]";
+	}
 	
 	
 	
