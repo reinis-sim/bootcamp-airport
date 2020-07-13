@@ -6,4 +6,6 @@ import com.example.demo.models.Location;
 
 public interface ILocationRepo extends CrudRepository<Location, Integer> {
 
+	boolean existsByCityAndCountry(String city, String country);
+
 }

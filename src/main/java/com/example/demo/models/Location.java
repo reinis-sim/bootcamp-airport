@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Getter @Setter @NoArgsConstructor @ToString
+
 @Table(name = "LocationTable")
 @Entity
 public class Location {
@@ -29,7 +29,6 @@ public class Location {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="ID_Location")
-	@Setter(AccessLevel.NONE)
 	private int ID_Location;
 	
 	
@@ -48,14 +47,12 @@ public class Location {
 	@OneToMany(mappedBy = "location")
 	private Collection<Airport> airport;
 	
+	public Location()
+	{
+		
+	}
 	
 	
-	
-	
-	
-	
-	
-
 
 
 	public Location(
@@ -66,12 +63,67 @@ public class Location {
 		this.country = country;
 	//	this.airport = (Collection<Airport>) airport;
 	}
+
+
+
+
+	public String getCity() {
+		return city;
+	}
+
+
+
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+
+
+
+	public String getCountry() {
+		return country;
+	}
+
+
+
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+
+
+
+	public Collection<Airport> getAirport() {
+		return airport;
+	}
+
+
+
+
+	public void setAirport(Collection<Airport> airport) {
+		this.airport = airport;
+	}
+
+
+
+
+	public int getID_Location() {
+		return ID_Location;
+	}
+
+
+
+
+	@Override
+	public String toString() {
+		return "Location [ID_Location=" + ID_Location + ", city=" + city + ", country=" + country + ", airport="
+				+ airport + "]";
+	}
 	
 	
-	
-	
-	
-	
+
 	
 	
 	

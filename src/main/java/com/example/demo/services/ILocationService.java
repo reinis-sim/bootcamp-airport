@@ -10,6 +10,7 @@ public interface ILocationService {
 	
 	//INSERT
 	boolean addLocation(String city, String country);
+	boolean addLocationByObject(Location location);
 	
 	//SELECT
 	ArrayList<Location> showAllLocations();
@@ -17,6 +18,11 @@ public interface ILocationService {
 	//UPDATE
 	boolean updateLocationById(int id, String city, String country);
 	boolean updateLocationObjectById(int id, Location location);
+	
+	//DELETE
+	boolean deleteLocationById(int id);
+	
+	
 	
 	
 
