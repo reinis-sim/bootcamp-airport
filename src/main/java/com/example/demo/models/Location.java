@@ -60,11 +60,11 @@ public class Location {
 
 	public Location(
 			@Size(min = 3, max = 15) @Pattern(regexp = "[a-zA-Z\\s]+$", message = "Only letters and spaces") String city,
-			@Size(min = 3, max = 15) @Pattern(regexp = "[a-zA-Z\\s]+$", message = "Only letters and spaces") String country, Airport airport) {
+			@Size(min = 3, max = 15) @Pattern(regexp = "[a-zA-Z\\s]+$", message = "Only letters and spaces") String country/*, Airport airport*/) {
 		super();
 		this.city = city;
 		this.country = country;
-		this.airport = (Collection<Airport>) airport;
+	//	this.airport = (Collection<Airport>) airport;
 	}
 	
 	

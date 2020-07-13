@@ -47,12 +47,12 @@ public class BoardingPass {
 	public BoardingPass() {
 		
 	}
-	public BoardingPass(Flight flight, User user, int seat, Collection<Luggage> allLuggage) {
+	public BoardingPass(Flight flight, User user, int seat) {
 		super();
 		this.flight = flight;
 		this.user = user;
 		this.seat = seat;
-		this.allLuggage = allLuggage;
+	
 	}
 	public Flight getFlight() {
 		return flight;

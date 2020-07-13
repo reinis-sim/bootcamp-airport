@@ -58,13 +58,13 @@ public class Flight {
 
 
 	public Flight(float time, @Min(0) @Max(10) float duration, Collection<Airport> airports,
-			@Min(0) @Max(10) int maxNumberOfPassangers, Collection<BoardingPass> boardingPasses) {
+			@Min(0) @Max(10) int maxNumberOfPassangers /*, Collection<BoardingPass> boardingPasses*/) {
 		super();
 		this.time = time;
 		this.duration = duration;
 		this.airports = airports;
 		this.maxNumberOfPassangers = maxNumberOfPassangers;
-		this.boardingPasses = boardingPasses;
+	//	this.boardingPasses = boardingPasses;
 	}
 	
 	

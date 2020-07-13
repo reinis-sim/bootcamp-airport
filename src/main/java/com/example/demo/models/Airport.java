@@ -65,6 +65,26 @@ public class Airport {
 		this.flights = flights;
 		this.location = loacation;
 	}
+
+
+
+
+	public Airport(
+			@Size(min = 3, max = 20) @Pattern(regexp = "[a-zA-Z\\s]+$", message = "Only letters and spaces") String title,
+			Location location) {
+		super();
+		this.title = title;
+		this.location = location;
+	}
+	
+	public boolean addNewFlight(Flight flight)
+	{
+		if (flights.contains(flight))
+			return false;
+		else
+			{flights.add(flight);
+			return true;}
+	}
 	
 	
 	
