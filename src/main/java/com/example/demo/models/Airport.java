@@ -52,7 +52,7 @@ public class Airport {
 	
 	@ManyToOne
 	@JoinColumn(name = "ID_Location")
-	private Location loacation;
+	private Location location;
 
 
 
@@ -63,7 +63,7 @@ public class Airport {
 		super();
 		this.title = title;
 		this.flights = flights;
-		this.loacation = loacation;
+		this.location = loacation;
 	}
 	
 	

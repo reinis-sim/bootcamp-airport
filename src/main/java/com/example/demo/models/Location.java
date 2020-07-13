@@ -1,5 +1,7 @@
 package com.example.demo.models;
 
+import java.util.Collection;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -44,7 +46,7 @@ public class Location {
 	
 	
 	@OneToMany(mappedBy = "location")
-	private Airport airport;
+	private Collection<Airport> airport;
 	
 	
 	
@@ -62,7 +64,7 @@ public class Location {
 		super();
 		this.city = city;
 		this.country = country;
-		this.airport = airport;
+		this.airport = (Collection<Airport>) airport;
 	}
 	
 	
