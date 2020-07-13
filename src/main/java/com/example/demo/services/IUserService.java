@@ -7,6 +7,7 @@ import com.example.demo.models.BoardingPass;
 import com.example.demo.models.Flight;
 import com.example.demo.models.Luggage;
 import com.example.demo.models.User;
+import com.itextpdf.text.pdf.PdfDocument;
 
 public interface IUserService {
 	boolean register(String name, String surname, String email, String password);
@@ -15,6 +16,6 @@ public interface IUserService {
 	ArrayList<Flight>selectAllFlights();
 	ArrayList<Flight>selectAllFlightsInAirport(Airport airport);
 	ArrayList<Flight>selectBookedFlightsByUser(User user);
-	boolean exportBookedFlightAsPDF(BoardingPass boardingPass);
+	PdfDocument exportBookedFlightAsPDF(BoardingPass boardingPass);
 	Flight selectOneBookedFlightByUser(BoardingPass boardingPass);
 }

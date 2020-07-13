@@ -14,6 +14,9 @@ import com.example.demo.repos.IBoardingPassRepo;
 import com.example.demo.repos.IFlightRepo;
 import com.example.demo.repos.IUserRepo;
 import com.example.demo.services.IUserService;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.pdf.PdfDocument;
 
 public class UserServiceImpl implements IUserService {
 
@@ -73,9 +76,16 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	@Override
-	public boolean exportBookedFlightAsPDF(BoardingPass boardingPass) {
-		// TODO Auto-generated method stub
-		return false;
+	public PdfDocument exportBookedFlightAsPDF(BoardingPass boardingPass) {
+		PdfDocument pdfDoc = new PdfDocument();
+		pdfDoc.newPage();
+		try {
+			pdfDoc.add((Element) boardingPass);
+		} catch (DocumentException e) {
+			e.printStackTrace();
+		}
+		pdfDoc.close();
+		return pdfDoc;
 	}
 	
 	@Override
