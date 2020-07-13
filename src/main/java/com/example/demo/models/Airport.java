@@ -37,7 +37,7 @@ public class Airport {
 	private int ID_Airport;
 	
 	
-	@Size(min = 3, max = 20)
+	@Size(min = 1, max = 20)
 	@Pattern(regexp = "[a-zA-Z\\s]+$", message = "Only letters and spaces")
 	@Column(name = "Title")
 	private String title;
@@ -70,7 +70,7 @@ public class Airport {
 
 
 	public Airport(
-			@Size(min = 3, max = 20) @Pattern(regexp = "[a-zA-Z\\s]+$", message = "Only letters and spaces") String title,
+			@Size(min = 1, max = 20) @Pattern(regexp = "[a-zA-Z\\s]+$", message = "Only letters and spaces") String title,
 			Location location) {
 		super();
 		this.title = title;

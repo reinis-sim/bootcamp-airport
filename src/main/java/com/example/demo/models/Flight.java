@@ -38,7 +38,7 @@ public class Flight {
 	
 	
 	@Min(0)
-	@Max(10)
+	@Max(1000)
 	@Column(name = "Duration")
 	private float duration;
 	
@@ -48,7 +48,7 @@ public class Flight {
 	
 	
 	@Min(0)
-	@Max(10)
+	@Max(1000)
 	@Column(name = "MaxNumberOfPassangers")
 	private int maxNumberOfPassangers;
 	
@@ -57,8 +57,8 @@ public class Flight {
 	private Collection<BoardingPass> boardingPasses;
 
 
-	public Flight(float time, @Min(0) @Max(10) float duration, Collection<Airport> airports,
-			@Min(0) @Max(10) int maxNumberOfPassangers /*, Collection<BoardingPass> boardingPasses*/) {
+	public Flight(float time, @Min(0) @Max(1000) float duration, Collection<Airport> airports,
+			@Min(0) @Max(1000) int maxNumberOfPassangers /*, Collection<BoardingPass> boardingPasses*/) {
 		super();
 		this.time = time;
 		this.duration = duration;
