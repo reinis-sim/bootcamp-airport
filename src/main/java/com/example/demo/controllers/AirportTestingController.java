@@ -19,6 +19,7 @@ import com.example.demo.repos.ILuggageRepo;
 import com.example.demo.repos.IUserRepo;
 import com.example.demo.services.ITestingAirportService;
 import com.example.demo.services.IUserService;
+import com.example.demo.services.impl.AdminServiceImpl;
 import com.example.demo.services.impl.EmailServiceImpl;  
 
 
@@ -52,6 +53,9 @@ public class AirportTestingController {
 	@Autowired
 	EmailServiceImpl myEmail;
 	
+	@Autowired
+	AdminServiceImpl adminService;
+	
 	@GetMapping("/test")         
 	public String getTest(){                 
 		testService.testModelsLayer();                 
@@ -67,14 +71,24 @@ public class AirportTestingController {
 			locationRepo.save(l2);
 			Airport a1 = new Airport("RIX",  l1);
 			Airport a2 = new Airport("BXX",  l2);
+			Airport a3 = new Airport("qqqq",l1);
+			Airport a4 = new Airport("wwww",l1);
 			airportRepo.save(a1);
 			airportRepo.save(a2);
+			airportRepo.save(a3);
+			airportRepo.save(a4);
+			ArrayList<Airport>air = new ArrayList<Airport>();
+			air.add(a1);
+			air.add(a3);
+			ArrayList<Airport>air2 = new ArrayList<Airport>();
+			air2.add(a2);
+			air2.add(a4);
 		    ArrayList<Airport> permAir = new ArrayList<Airport>();
 	        permAir.add(a1);
 	        permAir.add(a2);
 			Flight f1 = new Flight(9.00f, 2.00f, permAir, 10);
-			Flight f2 = new Flight(9.00f, 2.00f, permAir, 10);
-			Flight f3 = new Flight(9.00f, 2.00f, permAir, 10);
+			Flight f2 = new Flight(9.00f, 2.00f, air, 10);
+			Flight f3 = new Flight(9.00f, 2.00f, air2, 10);
 			flightRepo.save(f1);
 			flightRepo.save(f2);
 			flightRepo.save(f3);
@@ -110,7 +124,13 @@ public class AirportTestingController {
 			//System.out.println("Saving PDF");
 			
 			//myEmail.sendEmail("email@email.lv",bo1 );
+			
 		}
+			System.out.println("------");
+			System.out.println(adminService.getAllFlightsByAirportID(3));
+			System.out.println(adminService.getAllFlightsByAirportID(4));
+			System.out.println(adminService.getAllFlightsByAirportID(5));
+			System.out.println(adminService.getAllFlightsByAirportID(6));
 		return "home";
 
 	}
