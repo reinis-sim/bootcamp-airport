@@ -18,6 +18,9 @@ import com.example.demo.repos.IFlightRepo;
 import com.example.demo.repos.ILocationRepo;
 import com.example.demo.repos.ILuggageRepo;
 import com.example.demo.repos.IUserRepo;
+
+import com.example.demo.services.IAirportService;
+
 import com.example.demo.services.ITestingAirportService;
 
 @Service
@@ -64,8 +67,9 @@ public class TestingAirportServiceImpl implements ITestingAirportService {
 		Flight f1 = new Flight(12.00f, 2.00f, permAir, 200);
 		flightRepo.save(f1);
 		
-		User u1 = new User("123@gmail", "parole123", "ROLE_ADMIN", true);
-		User u2 = new User("abc@gmail", "paro321", "ROLE_USER", true);
+		User u1 = new User("name1","surname1","123@gmail", "parole123", "ROLE_ADMIN", true);
+		User u2 = new User("name2","surname2","abc@gmail", "paro321", "ROLE_USER", true);
+
 		userRepo.save(u1);
 		userRepo.save(u2);
 		

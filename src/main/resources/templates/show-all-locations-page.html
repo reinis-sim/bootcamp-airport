@@ -1,0 +1,18 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<body>
+	<p>All Locations</p>
+	
+	<table>
+	<tr th:each="loc: ${innerObject}">
+		<td th:text="${loc.getID_Location()}"></td>
+		<td th:text="${loc.getCity()}"></td>
+		<td th:text="${loc.getCountry()}"></td>
+		
+	
+	</tr>
+	
+	</table>
+	
+	</body>
+
+</html>

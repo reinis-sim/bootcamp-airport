@@ -13,8 +13,12 @@ public class VipUser extends User{
 	public void setDiscount(float discount) {
 		this.discount = discount;
 	}
-	public VipUser(String email, String password, String roles, boolean isEnabled, float discount) {
-		super(email, password, roles, isEnabled);
+	public VipUser(String name, String surname, String email, String password, String roles, boolean isEnabled, float discount) {
+		super(name, surname, email, password, roles, isEnabled);
+		this.discount = discount;
+	}
+	public VipUser(User user, float discount) {
+		super(user.getName(),user.getSurname(),user.getEmail(),user.getPassword(),user.getRoles(),user.isEnabled());
 		this.discount = discount;
 	}
 

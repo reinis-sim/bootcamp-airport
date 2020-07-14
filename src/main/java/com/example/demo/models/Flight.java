@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Getter @Setter @NoArgsConstructor @ToString
+
 @Table(name = "FlightTable")
 @Entity
 public class Flight {
@@ -29,8 +29,11 @@ public class Flight {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="ID_Flight")
+
 	@Setter(AccessLevel.NONE)
 	private int IDFlight;
+
+
 	
 	
 	@Column(name = "Time")
@@ -38,7 +41,7 @@ public class Flight {
 	
 	
 	@Min(0)
-	@Max(10)
+	@Max(1000)
 	@Column(name = "Duration")
 	private float duration;
 	
@@ -55,13 +58,14 @@ public class Flight {
 	
 	@OneToMany(mappedBy = "flight")
 	private Collection<BoardingPass> boardingPasses;
+	
 
 	public Flight() {
 		
 	}
 
-	public Flight(float time, @Min(0) @Max(10) float duration, Collection<Airport> airports,
-			@Min(0) @Max(10) int maxNumberOfPassangers /*, Collection<BoardingPass> boardingPasses*/) {
+	public Flight(float time, @Min(0) @Max(1000) float duration, Collection<Airport> airports,
+			@Min(0) @Max(1000) int maxNumberOfPassangers /*, Collection<BoardingPass> boardingPasses*/) {
 		super();
 		this.time = time;
 		this.duration = duration;
@@ -70,49 +74,87 @@ public class Flight {
 	//	this.boardingPasses = boardingPasses;
 	}
 
+
+
+
 	public float getTime() {
 		return time;
 	}
+
+
+
 
 	public void setTime(float time) {
 		this.time = time;
 	}
 
+
+
+
 	public float getDuration() {
 		return duration;
 	}
+
+
+
 
 	public void setDuration(float duration) {
 		this.duration = duration;
 	}
 
+
+
+
 	public Collection<Airport> getAirports() {
 		return airports;
 	}
+
+
 
 	public void setAirports(Collection<Airport> airports) {
 		this.airports = airports;
 	}
 
+
+
 	public int getMaxNumberOfPassangers() {
 		return maxNumberOfPassangers;
 	}
+
+
+
 
 	public void setMaxNumberOfPassangers(int maxNumberOfPassangers) {
 		this.maxNumberOfPassangers = maxNumberOfPassangers;
 	}
 
+
 	public Collection<BoardingPass> getBoardingPasses() {
 		return boardingPasses;
 	}
+
+
 
 	public void setBoardingPasses(Collection<BoardingPass> boardingPasses) {
 		this.boardingPasses = boardingPasses;
 	}
 
+
+
+
 	public int getIDFlight() {
 		return IDFlight;
 	}
+
+
+	@Override
+	public String toString() {
+		return "Flight [ID_Flight=" + IDFlight + ", time=" + time + ", duration=" + duration + ", airports=" + airports
+				+ ", maxNumberOfPassangers=" + maxNumberOfPassangers + ", boardingPasses=" + boardingPasses + "]";
+	}
+	
+	
+
 	
 	
 	
