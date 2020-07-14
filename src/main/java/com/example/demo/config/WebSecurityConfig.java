@@ -24,7 +24,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-		.antMatchers("/**").permitAll()
+		.antMatchers("/airport/showAll/").permitAll()
+		.antMatchers("/airport/showAll/**/**").permitAll()
+		.antMatchers("/airport/insert/**/**").hasRole("ADMIN")
+		.antMatchers("airport/delete/**/**").hasRole("ADMIN")
+		
+		.antMatchers("/boardingPass/**/**").hasRole("ADMIN")
+		
+		.antMatchers("/flight/showAll").permitAll()
+		
+		.antMatchers("/location/**").hasRole("ADMIN")
+		
+		.antMatchers("/luggage/**").authenticated()
+		
+		.antMatchers("/user/**").authenticated()
+		
+		//.antMatchers("/").permitAll()
 		.and().formLogin();
 		/*
 			.antMatchers("/admin").hasRole("ADMIN")

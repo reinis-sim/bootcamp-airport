@@ -4,7 +4,7 @@
 	
 	<table>
 	<tr th:each="air: ${innerObject}">
-		<td th:text="${air.getID_Airport()}"></td>
+		<td th:text="${air.getIDAirport()}"></td>
 		<td th:text="${air.getTitle()}"></td>
 		<td th:text="${air.getLocation().getCity()}"></td>
 		<td th:text="${air.getLocation().getCountry()}"></td>

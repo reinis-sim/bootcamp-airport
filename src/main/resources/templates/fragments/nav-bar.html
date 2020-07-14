@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></head>
+</head>
 <body>
     <header th:fragment="nav-bar">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -13,40 +13,72 @@
     <ul class="navbar-nav">
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-         	Admin
+         	Airport
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="/admin/test">Import data</a>
-          <a class="dropdown-item" href="/admin/newHourlyEmpl/">New Hourly Employee</a>
-          <a class="dropdown-item" href="/admin/newSalaryEmpl/">New Salary Employee</a>
-          <a class="dropdown-item" href="/admin/newGuestVisit/">New Guest Visit</a>
-          <a class="dropdown-item" href="/admin/updateHourlyEmpl/">Update Hourly Employee</a>
-          <a class="dropdown-item" href="/admin/updateSalaryEmpl/">Update Salary Employee</a>
-          <a class="dropdown-item" href="/admin/updateGuest/">Update Guest</a>
-          <a class="dropdown-item" href="/admin/deleteEmployee/">Delete Employee</a>
-          <a class="dropdown-item" href="/admin/deleteGuest">Delete Guest</a>
+          	<a class="dropdown-item" href="/airport/showAll">Show All</a>
+          	<a sec:authorize="hasRole('ADMIN')" class="dropdown-item" href="/airport/insert">Insert Airport</a>
+          	<a class="dropdown-item" href="/airport/showAll/">Show One</a>
+          	<a sec:authorize="hasRole('ADMIN')" class="dropdown-item" href="/airport/delete/">Delete</a>
         </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-         	User
-        </a>
+      	</li>
+      	<li sec:authorize="hasRole('ADMIN')" class="nav-item dropdown">
+        	<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         		Boarding Pass
+        	</a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="/user/attendances/1">Show Attendances</a>
-          <a class="dropdown-item" href="/user/checkin/1">Check in/out</a>
+          	<a class="dropdown-item" href="/boardingPass/showAllBoardingPass">Show All</a>
+          	<a class="dropdown-item" href="/boardingPass/showOneBoardingPass/">Show One</a>
+          	<a class="dropdown-item" href="/boardingPass/showFlightBoardingPass/">Show Flight Boarding Pass</a>
         </div>
-      </li>
-       
-      <li class="nav-item">
-        <a sec:authorize="isAnonymous()" class="nav-link" href="user/register">Register</a>
-      </li>
-      <li class="nav-item">
-        <a sec:authorize="isAnonymous()" class="nav-link" href="/login">Login</a>
-      </li>
-      <li class="nav-item">
-        <a sec:authorize="isAuthenticated()" class="nav-link" href="/login?logout">Logout</a>
-      </li>
-      
+      	</li>
+      	<li class="nav-item dropdown">
+        	<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         		Flight
+        	</a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          	<a class="dropdown-item" href="/flight/showAll">Show All</a>
+        </div>
+      	</li>
+      	<li sec:authorize="hasRole('ADMIN')" class="nav-item dropdown">
+        	<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         		Location
+        	</a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          	<a class="dropdown-item" href="/location/showAll">Show All</a>
+          	<a class="dropdown-item" href="/location/insert">Insert Location</a>
+          	<a class="dropdown-item" href="/location/showAll/">Show One</a>
+          	<a class="dropdown-item" href="/location/delete/">Delete</a>
+        </div>
+      	</li>
+      	<li sec:authorize="isAuthenticated()" class="nav-item dropdown">
+        	<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         		Luggage
+        	</a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          	<a class="dropdown-item" href="/luggage/showAllLuggage">Show All</a>
+          	<a class="dropdown-item" href="/luggage/showOneLuggage/">Show One</a>
+          	<a class="dropdown-item" href="/luggage/showLuggageBoardingPass/">Show Boarding Pass</a>
+        </div>
+      	</li>
+      	<li class="nav-item dropdown">
+        	<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         		User
+        	</a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          	<a sec:authorize="isAuthenticated()" class="dropdown-item" href="/user/bookings">Show booked flights</a>
+          	<a class="dropdown-item" href="/user/allFlights">Show All Flights</a>
+        </div>
+      	</li>
+      	<li class="nav-item align-right">
+        	<a sec:authorize="isAnonymous()" class="nav-link" href="/user/register">Register</a>
+      	</li>
+      	<li class="nav-item align-right">
+        	<a sec:authorize="isAnonymous()" class="nav-link" href="/login">Login</a>
+      	</li>
+      	<li class="nav-item align-right">
+        	<a sec:authorize="isAuthenticated()" class="nav-link" href="/login?logout">Logout</a>
+      	</li>
     </ul>
   </div>
 </nav>
