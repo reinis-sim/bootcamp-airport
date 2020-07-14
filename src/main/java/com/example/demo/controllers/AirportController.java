@@ -68,6 +68,21 @@ public class AirportController {
 		}
 	}
 	
+	@GetMapping("/delete/{id}")
+	public String getDeleteAirportById(@PathVariable(name = "id") int id, Model model)
+	{
+		try
+		{
+			airportService.deleteAirportById(id);
+			
+			model.addAttribute("innerObject", airportService.showAllAirports());
+			return "show-all-airports-page";// show-all-airports-page.html
+		}
+		catch (Exception e) {
+			return "error";
+		}
+	}
+	
 	
 	
 

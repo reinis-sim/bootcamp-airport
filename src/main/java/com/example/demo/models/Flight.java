@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -45,8 +47,8 @@ public class Flight {
 	@Column(name = "Duration")
 	private float duration;
 	
-	
-	@ManyToMany(mappedBy = "flights")
+	@ManyToMany
+	@JoinTable(name = "Airport_Flight", joinColumns =@JoinColumn(name = "ID_Flight" ), inverseJoinColumns = @JoinColumn(name = "ID_Airport" ) )
 	private Collection<Airport> airports;
 	
 	

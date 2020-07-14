@@ -43,8 +43,7 @@ public class Airport {
 	
 	
 	
-	@ManyToMany
-	@JoinTable(name = "Airport_Flight", joinColumns =@JoinColumn(name = "ID_Flight" ), inverseJoinColumns = @JoinColumn(name = "ID_Airport" ) )
+	@ManyToMany(mappedBy = "airports")
 	private Collection<Flight> flights;
 	
 	

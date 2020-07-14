@@ -61,4 +61,19 @@ public class AirportServiceImpl implements IAirportService{
 		throw new Exception("Id is not correct and there is not a location with that id in System");
 	}
 
+	@Override
+	public boolean deleteAirportById(int id){
+
+		if(id>0)
+		{
+			if(airportRepo.existsById(id))
+			{
+				airportRepo.deleteById(id);
+				return true;
+				
+			}
+		}
+		return false;
+	}
+
 }
