@@ -11,6 +11,7 @@ import com.example.demo.models.Flight;
 import com.example.demo.models.Luggage;
 import com.example.demo.models.User;
 import com.example.demo.repos.IBoardingPassRepo;
+import com.example.demo.repos.IFlightRepo;
 import com.example.demo.repos.IUserRepo;
 import com.example.demo.services.IBoardingPassService;
 
@@ -21,6 +22,8 @@ public class BoardingPassServiceImpl implements IBoardingPassService{
 	IBoardingPassRepo bpRepo;
 	@Autowired
 	IUserRepo userRepo;
+	@Autowired
+	IFlightRepo flRepo;
 
 	@Override
 	public BoardingPass selectOneBoardingPassById(int id) throws Exception {
@@ -65,12 +68,16 @@ public class BoardingPassServiceImpl implements IBoardingPassService{
 	}
 
 	@Override
-	public ArrayList<BoardingPass> selectAllBoardingPassesByFlight(Flight flight) {
-		ArrayList<BoardingPass> bpByFlight = bpRepo.findByFlight(flight);
-		if(bpByFlight!=null)
-			return bpByFlight;
+	public ArrayList<BoardingPass> selectAllBoardingPassesByFlightID(int id)throws Exception {
+		if(id > 0)
+		{
+			if(bpRepo.existsByFlightIDFlight(id)) {
+			ArrayList<BoardingPass>flightBoardingPass = bpRepo.findByFlightIDFlight(id);
+			return flightBoardingPass;
+			}
+		}
+		throw new Exception("Id is not correct and there is not customer with that id in System");
 		
-		return new ArrayList<>();
 	}
-
+	
 }

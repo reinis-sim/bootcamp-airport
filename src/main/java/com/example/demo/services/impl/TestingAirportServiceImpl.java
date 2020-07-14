@@ -18,9 +18,10 @@ import com.example.demo.repos.IFlightRepo;
 import com.example.demo.repos.ILocationRepo;
 import com.example.demo.repos.ILuggageRepo;
 import com.example.demo.repos.IUserRepo;
+import com.example.demo.services.ITestingAirportService;
 
 @Service
-public class TestingAirportServiceImpl {
+public class TestingAirportServiceImpl implements ITestingAirportService {
 	
 	@Autowired
 	IAirportRepo airportRepo;
