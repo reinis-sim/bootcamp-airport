@@ -50,9 +50,27 @@ public class LocationController {
 		
 	}
 	
-	//TODO needs fixing
 	
-	/*
+	@GetMapping("/showAll/{id}")//url address->localhost:8080/location/showAll/1
+	public String getShowAllLocationsId(@PathVariable(name = "id") int id, Model model) {
+		try
+		{
+			model.addAttribute("innerObject", locationService.selectOneLocationById(id));
+			return "show-one-location-page";// show-one-location-page.html
+			
+		}
+		catch (Exception e) {
+			return "error";
+		}
+	}
+	
+	
+	
+
+	
+	
+	
+	//CAN DELETE ONLY WHEN LOCATION NOT USED
 	@GetMapping("/delete/{id}")
 	public String getDeleteLocationById(@PathVariable(name = "id") int id, Model model)
 	{
@@ -67,7 +85,7 @@ public class LocationController {
 			return "error";
 		}
 	}
-	*/
+	
 	
 
 }

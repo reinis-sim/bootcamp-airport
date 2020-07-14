@@ -111,4 +111,19 @@ public class LocationServiceImpl implements ILocationService {
 		
 		
 	}
+
+	@Override
+	public Location selectOneLocationById(int id) throws Exception {
+		if(id > 0)
+		{
+			
+			if (locationRepo.existsById(id))
+			{
+				return locationRepo.findById(id).get();
+			}
+		}
+		
+		throw new Exception("Id is not correct and there is not a location with that id in System");
+	}
+	
 }

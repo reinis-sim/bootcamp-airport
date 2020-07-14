@@ -62,11 +62,11 @@ public class Airport {
 
 	public Airport(
 			@Size(min = 3, max = 20) @Pattern(regexp = "[a-zA-Z\\s]+$", message = "Only letters and spaces") String title,
-			Collection<Flight> flights, Location loacation) {
+			Collection<Flight> flights, Location location) {
 		super();
 		this.title = title;
 		this.flights = flights;
-		this.location = loacation;
+		this.location = location;
 	}
 
 
