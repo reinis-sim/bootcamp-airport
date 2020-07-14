@@ -27,7 +27,7 @@ public class BoardingPassController {
 		model.addAttribute("innerObject", bpService.selectAllBoardingPasses());
 		return "show-all-boarding-pass";
 	}
-	@GetMapping("/showOneBoardingPass/{id}")  //url address->localhost:8080/product/showAllProducts/id
+	@GetMapping("/showOneBoardingPass/{id}")  
 	public String getShowAllBoardingPassId(@PathVariable(name = "id") int id, Model model) {
 		try
 		{
@@ -38,7 +38,7 @@ public class BoardingPassController {
 			return "error";
 		}
 	}
-	@GetMapping("/showFlightBoardingPass/{id}")  //url address->localhost:8080/product/showAllProducts/id
+	@GetMapping("/showFlightBoardingPass/{id}")  
 	public String getShowFlightBoardingPassId(@PathVariable(name = "id") int id, Model model) {
 		try
 		{

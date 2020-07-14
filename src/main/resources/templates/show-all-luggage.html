@@ -1,0 +1,19 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<body>
+	<p>All Luggage</p>
+	
+	<table>
+	<tr th:each="lug: ${innerObject}">
+		<td th:text="${lug.getWeight()}"></td>
+		<td th:text="${lug.getPrice()}"></td>
+		<td th:text="${lug.getBoardingPass().getID_BPass()}"></td>
+		
+		
+
+	</tr>
+	
+	</table>
+	
+	</body>
+
+</html>

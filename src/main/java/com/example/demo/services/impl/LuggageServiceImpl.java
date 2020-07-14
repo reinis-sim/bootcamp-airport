@@ -2,6 +2,7 @@ package com.example.demo.services.impl;
 
 import java.util.ArrayList;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.models.BoardingPass;
@@ -12,7 +13,7 @@ import com.example.demo.services.ILuggageService;
 
 @Service
 public class LuggageServiceImpl implements ILuggageService {
-	
+	@Autowired
 	ILuggageRepo lugRepo;
 
 	@Override
