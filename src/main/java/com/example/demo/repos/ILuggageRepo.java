@@ -11,7 +11,13 @@ import com.example.demo.models.Luggage;
 public interface ILuggageRepo extends CrudRepository<Luggage, Integer> {
 
 
-	ArrayList<Luggage> findByBoardingPass(BoardingPass boardingPass);
+	
+
+	boolean existsByBoardingPassIDBPass(int id);
+
+	ArrayList<Luggage> findByBoardingPassIDBPass(int id);
+
+	
 
 	
 

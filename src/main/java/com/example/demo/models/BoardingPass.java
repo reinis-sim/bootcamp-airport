@@ -20,7 +20,7 @@ public class BoardingPass {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="ID_BoardingPass")
-	private int ID_BPass;
+	private int IDBPass;
 	
 	//FLIGHT
 	@ManyToOne
@@ -85,12 +85,12 @@ public class BoardingPass {
 	public void setAllLuggage(Collection<Luggage> allLuggage) {
 		this.allLuggage = allLuggage;
 	}
-	public int getID_BPass() {
-		return ID_BPass;
+	public int getIDBPass() {
+		return IDBPass;
 	}
 	@Override
 	public String toString() {
-		return "BoardingPass [ID_BPass=" + ID_BPass + ", flight=" + flight + ", user=" + user + ", seat=" + seat
+		return "BoardingPass [ID_BPass=" + IDBPass + ", flight=" + flight + ", user=" + user + ", seat=" + seat
 				+ ", allLuggage=" + allLuggage + "]";
 	}
 	

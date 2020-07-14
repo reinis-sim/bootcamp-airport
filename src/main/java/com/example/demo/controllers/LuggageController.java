@@ -39,5 +39,16 @@ public class LuggageController {
 			return "error";
 		}
 	}
+	@GetMapping("/showLuggageBoardingPass/{id}")  
+	public String getShowLuggageBoardingPass(@PathVariable(name = "id") int id, Model model) {
+		try
+		{
+			model.addAttribute("innerObject", lugService.selectAllLuggageByBoardingPass(id));
+			return "show-one-luggage";
+		}
+		catch (Exception e) {
+			return "error";
+		}
+	}
 	
 }

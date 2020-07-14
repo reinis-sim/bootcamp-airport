@@ -33,12 +33,15 @@ public class LuggageServiceImpl implements ILuggageService {
 	}
 
 	@Override
-	public ArrayList<Luggage> selectAllLuggageByBoardingPass(BoardingPass boardingPass) {
-		ArrayList<Luggage> luggageByBPass = lugRepo.findByBoardingPass(boardingPass);
-		if(luggageByBPass!=null)
-			return luggageByBPass;
-		
-		return new ArrayList<>();
+	public ArrayList<Luggage> selectAllLuggageByBoardingPass(int id)throws Exception {
+		if(id > 0)
+		{
+			if(lugRepo.existsByBoardingPassIDBPass(id)) {
+			ArrayList<Luggage>bpLug = lugRepo.findByBoardingPassIDBPass(id);
+			return bpLug;
+			}
+		}
+		throw new Exception("Id is not correct and there is not customer with that id in System");
 	}
 
 	@Override
