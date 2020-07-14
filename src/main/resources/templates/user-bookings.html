@@ -18,10 +18,10 @@
        		</thead>
        		<tbody>
 	       		<tr th:each="flight : ${flights}">
-	       			<td scope="col" th:text="${flightFrom}"></td>
-	       			<td scope="col" th:text="${flightTo}"></td>
-	       			<td scope="col" th:text="${flights.duration}"></td>
-	       			<td scope="col" th:text="${flights.time}"></td>
+	       			<td scope="col" th:text="${flight.airports.stream().findFirst().get().getTitle()}"></td>
+	       			<td scope="col" th:text="${flight.airports.stream().skip(1).findFirst().get().getTitle()}"></td>
+	       			<td scope="col" th:text="${flight.duration}"></td>
+	       			<td scope="col" th:text="${flight.time}"></td>
 	       		</tr>
        		</tbody>
     	</table>

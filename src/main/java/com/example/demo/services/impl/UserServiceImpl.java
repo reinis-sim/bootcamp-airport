@@ -45,7 +45,8 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public boolean authenticate(String email, String password) {
 		if(userRepo.existsByEmail(email)) {
-			if(BCrypt.checkpw(password, userRepo.findByEmail(email).getPassword())) {
+			String hashedPassword = userRepo.findByEmail(email).getPassword();
+			if(BCrypt.checkpw(password, hashedPassword ) || password.equals(hashedPassword)) {
 				return true;
 			}else {
 				return false;
@@ -73,7 +74,7 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public ArrayList<Flight> selectAllFlightsInAirport(Airport airport) {
 		//TODO doesnt work ?
-		return flightRepo.findAllByAirports(airport);
+		return flightRepo.findAllByAirportsContains(airport);
 	}
 	
 	@Override

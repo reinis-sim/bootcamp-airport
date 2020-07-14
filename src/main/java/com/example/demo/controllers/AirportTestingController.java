@@ -23,13 +23,12 @@ import com.example.demo.repos.ILuggageRepo;
 import com.example.demo.repos.IUserRepo;
 import com.example.demo.services.ITestingAirportService;
 import com.example.demo.services.IUserService;
+import com.example.demo.services.impl.AdminServiceImpl;
 import com.example.demo.services.impl.EmailServiceImpl;  
 
 
 @Controller
 public class AirportTestingController {                  
-	@Autowired         
-	ITestingAirportService testService;          
 	
 
 	@Autowired
@@ -56,11 +55,9 @@ public class AirportTestingController {
 	@Autowired
 	EmailServiceImpl myEmail;
 	
-	@GetMapping("/test")         
-	public String getTest(){                 
-		testService.testModelsLayer();                 
-		return "hello-page";         
-	}
+	@Autowired
+	AdminServiceImpl adminService;
+	
 	
 	@GetMapping("/")
 	String test() {
@@ -71,14 +68,24 @@ public class AirportTestingController {
 			locationRepo.save(l2);
 			Airport a1 = new Airport("RIX",  l1);
 			Airport a2 = new Airport("BXX",  l2);
+			Airport a3 = new Airport("qqqq",l1);
+			Airport a4 = new Airport("wwww",l1);
 			airportRepo.save(a1);
 			airportRepo.save(a2);
+			airportRepo.save(a3);
+			airportRepo.save(a4);
+			ArrayList<Airport>air = new ArrayList<Airport>();
+			air.add(a1);
+			air.add(a3);
+			ArrayList<Airport>air2 = new ArrayList<Airport>();
+			air2.add(a2);
+			air2.add(a4);
 		    ArrayList<Airport> permAir = new ArrayList<Airport>();
 	        permAir.add(a1);
 	        permAir.add(a2);
 			Flight f1 = new Flight(9.00f, 2.00f, permAir, 150);
-			Flight f2 = new Flight(12.00f, 1.40f, permAir, 100);
-			Flight f3 = new Flight(20.00f, 5.20f, permAir, 300);
+			Flight f2 = new Flight(12.00f, 1.40f, air, 100);
+			Flight f3 = new Flight(20.00f, 5.20f, air2, 300);
 			flightRepo.save(f1);
 			flightRepo.save(f2);
 			flightRepo.save(f3);
@@ -96,7 +103,7 @@ public class AirportTestingController {
 			Luggage lug1 = new Luggage(12.99f, 5.75f, bo1);
 			luggageRepo.save(lug1);
 			
-			userService.register("temps","surname","email@email.com","passsss");
+			userService.register("temps","surname","email@email.com","password");
 			//flightRepo.save(new Flight(0f, 10f, airports, maxNumberOfPassangers))
 			System.out.println(userService.authenticate("email@email.com", "passsss"));
 			System.out.println(userService.authenticate("email@email.com", "passs"));
@@ -114,7 +121,10 @@ public class AirportTestingController {
 			//System.out.println("Saving PDF");
 			
 			//myEmail.sendEmail("email@email.lv",bo1 );
+			
 		}
+			System.out.println("------");
+			
 		return "home";
 
 	}

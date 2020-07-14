@@ -1,17 +1,25 @@
 package com.example.demo.services.impl;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.stereotype.Service;
 
+import com.example.demo.models.Airport;
 import com.example.demo.models.Flight;
 import com.example.demo.models.User;
+import com.example.demo.repos.IAirportRepo;
 import com.example.demo.repos.IFlightRepo;
 import com.example.demo.repos.IUserRepo;
 import com.example.demo.services.IAdminService;
 
+@Service
 public class AdminServiceImpl implements IAdminService {
 	@Autowired
 	IFlightRepo flightRepo;
+	@Autowired
+	IAirportRepo airportRepo;
 	@Autowired
 	IUserRepo userRepo;
 	
@@ -49,7 +57,24 @@ public class AdminServiceImpl implements IAdminService {
 		}
 		return false;
 	}
-
+	
+	@Override
+	public ArrayList<Flight> getAllFlightsByAirportID(int id) {
+		//Returns ALL fligths (in and out) of the airport specified
+		ArrayList<Flight>temp = (ArrayList<Flight>) flightRepo.findAll();
+		ArrayList<Flight>flightsByAirportId = new ArrayList<>();
+		for(Flight f : temp) {
+			for(Airport a : f.getAirports()) {
+				if(a.getIDAirport() == id) {
+					flightsByAirportId.add(f);
+				}
+			}
+		}
+		return flightsByAirportId;
+		//TODO figure out how to do that through repo
+		//return flightRepo.findAllByAirportsIDAirport(id);
+	}
+	
 	@Override
 	public boolean updateUserById(int id, User user) {
 		if(!userRepo.existsById(id)) {
@@ -76,5 +101,6 @@ public class AdminServiceImpl implements IAdminService {
 		}
 		return false;
 	}
+
 	
 }

@@ -1,6 +1,7 @@
 package com.example.demo.models;
 
 import java.util.Collection;
+import java.util.Collections;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,16 +33,14 @@ public class Airport {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="ID_Airport")
-	private int ID_Airport;
+	@Column(name="IDAirport")
+	private int IDAirport;
 	
 	
 	@Size(min = 1, max = 20)
 	@Pattern(regexp = "[a-zA-Z\\s]+$", message = "Only letters and spaces")
 	@Column(name = "Title")
 	private String title;
-	
-	
 	
 	@ManyToMany(mappedBy = "airports")
 	private Collection<Flight> flights;
@@ -77,6 +76,7 @@ public class Airport {
 		super();
 		this.title = title;
 		this.location = location;
+		this.flights = Collections.emptyList();
 	}
 	
 	public boolean addNewFlight(Flight flight)
@@ -119,14 +119,14 @@ public class Airport {
 	}
 
 
-	public int getID_Airport() {
-		return ID_Airport;
+	public int getIDAirport() {
+		return IDAirport;
 	}
 
 
 	@Override
 	public String toString() {
-		return "Airport [ID_Airport=" + ID_Airport + ", title=" + title + ", flights=" + flights + ", location="
+		return "Airport [IDAirport=" + IDAirport + ", title=" + title + ", flights=" + flights + ", location="
 				+ location + "]";
 	}
 	
