@@ -1,0 +1,20 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<body>
+	<p>All Flights</p>
+	
+	<table>
+	<tr th:each="fl: ${innerObject}">
+		<td th:text="${fl.getIDFlight()}"></td>
+		<td th:text="${fl.getDuration()}"></td>
+		<td th:text="${fl.getMaxNumberOfPassangers()}"></td>
+		<td th:text="${fl.getAirports().getTitle())}"></td>
+
+		
+	
+	</tr>
+	
+	</table>
+	
+	</body>
+
+</html>

@@ -15,6 +15,6 @@ public interface IAirportService {
 	Airport selectOneAirportById(int id) throws Exception;
 	
 	//DELETE
-	//boolean deleteAirportById(int id);
+	boolean deleteAirportById(int id);
 
 }
