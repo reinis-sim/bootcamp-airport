@@ -81,12 +81,10 @@ public class User {
 	public void setEnabled(boolean isEnabled) {
 		this.isEnabled = isEnabled;
 	}
-	
-	public User(@Size(min = 5, max = 30, message = "Name must be atleast 5-30 characters long") String name,
-			@Size(min = 5, max = 30, message = "Surname must be atleast 5-30 characters long") String surname,
-			@Email(message = "Fill in correct email") String email,
-			@Size(min = 5, message = "Password must be atleast 5 characters long") String password, String roles,
-			boolean isEnabled) {
+	public User() {
+		
+	}
+	public User(String name, String surname, String email, String password, String roles, boolean isEnabled) {
 		super();
 		this.name = name;
 		this.surname = surname;
@@ -94,16 +92,8 @@ public class User {
 		this.password = password;
 		this.roles = roles;
 		this.isEnabled = isEnabled;
-	}
-	public User() {
-		super();
-		this.name = null;
-		this.surname = null;
-		this.email = null;
-		this.password = null;
-		this.roles = null;
-		this.isEnabled = false;
-	}
+}
+	
 	@Override
 	public String toString() {
 		return "User [id_user=" + id_user + ", email=" + email + ", password=" + password + "]";

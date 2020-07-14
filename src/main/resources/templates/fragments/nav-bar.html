@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></head>
+<body>
+    <header th:fragment="nav-bar">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="/">title</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         	Admin
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="/admin/test">Import data</a>
+          <a class="dropdown-item" href="/admin/newHourlyEmpl/">New Hourly Employee</a>
+          <a class="dropdown-item" href="/admin/newSalaryEmpl/">New Salary Employee</a>
+          <a class="dropdown-item" href="/admin/newGuestVisit/">New Guest Visit</a>
+          <a class="dropdown-item" href="/admin/updateHourlyEmpl/">Update Hourly Employee</a>
+          <a class="dropdown-item" href="/admin/updateSalaryEmpl/">Update Salary Employee</a>
+          <a class="dropdown-item" href="/admin/updateGuest/">Update Guest</a>
+          <a class="dropdown-item" href="/admin/deleteEmployee/">Delete Employee</a>
+          <a class="dropdown-item" href="/admin/deleteGuest">Delete Guest</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         	User
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="/user/attendances/1">Show Attendances</a>
+          <a class="dropdown-item" href="/user/checkin/1">Check in/out</a>
+        </div>
+      </li>
+       
+      <li class="nav-item">
+        <a sec:authorize="isAnonymous()" class="nav-link" href="user/register">Register</a>
+      </li>
+      <li class="nav-item">
+        <a sec:authorize="isAnonymous()" class="nav-link" href="/login">Login</a>
+      </li>
+      <li class="nav-item">
+        <a sec:authorize="isAuthenticated()" class="nav-link" href="/login?logout">Logout</a>
+      </li>
+      
+    </ul>
+  </div>
+</nav>
+    </header>
+</body>
+</html>
