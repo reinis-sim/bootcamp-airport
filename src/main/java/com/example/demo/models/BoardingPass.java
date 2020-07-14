@@ -52,7 +52,6 @@ public class BoardingPass {
 		this.flight = flight;
 		this.user = user;
 		this.seat = seat;
-	
 	}
 	
 	public BoardingPass(Flight flight, User user, int seat, Collection<Luggage> allLuggage) {

@@ -29,7 +29,11 @@ public class Flight {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="ID_Flight")
-	private int ID_Flight;
+
+	@Setter(AccessLevel.NONE)
+	private int IDFlight;
+
+
 	
 	
 	@Column(name = "Time")
@@ -55,11 +59,10 @@ public class Flight {
 	@OneToMany(mappedBy = "flight")
 	private Collection<BoardingPass> boardingPasses;
 	
-	public Flight()
-	{
+
+	public Flight() {
 		
 	}
-
 
 	public Flight(float time, @Min(0) @Max(1000) float duration, Collection<Airport> airports,
 			@Min(0) @Max(1000) int maxNumberOfPassangers /*, Collection<BoardingPass> boardingPasses*/) {
@@ -72,9 +75,13 @@ public class Flight {
 	}
 
 
+
+
 	public float getTime() {
 		return time;
 	}
+
+
 
 
 	public void setTime(float time) {
@@ -82,9 +89,13 @@ public class Flight {
 	}
 
 
+
+
 	public float getDuration() {
 		return duration;
 	}
+
+
 
 
 	public void setDuration(float duration) {
@@ -92,9 +103,12 @@ public class Flight {
 	}
 
 
+
+
 	public Collection<Airport> getAirports() {
 		return airports;
 	}
+
 
 
 	public void setAirports(Collection<Airport> airports) {
@@ -102,9 +116,12 @@ public class Flight {
 	}
 
 
+
 	public int getMaxNumberOfPassangers() {
 		return maxNumberOfPassangers;
 	}
+
+
 
 
 	public void setMaxNumberOfPassangers(int maxNumberOfPassangers) {
@@ -117,23 +134,27 @@ public class Flight {
 	}
 
 
+
 	public void setBoardingPasses(Collection<BoardingPass> boardingPasses) {
 		this.boardingPasses = boardingPasses;
 	}
 
 
-	public int getID_Flight() {
-		return ID_Flight;
+
+
+	public int getIDFlight() {
+		return IDFlight;
 	}
 
 
 	@Override
 	public String toString() {
-		return "Flight [ID_Flight=" + ID_Flight + ", time=" + time + ", duration=" + duration + ", airports=" + airports
+		return "Flight [ID_Flight=" + IDFlight + ", time=" + time + ", duration=" + duration + ", airports=" + airports
 				+ ", maxNumberOfPassangers=" + maxNumberOfPassangers + ", boardingPasses=" + boardingPasses + "]";
 	}
 	
 	
+
 	
 	
 	

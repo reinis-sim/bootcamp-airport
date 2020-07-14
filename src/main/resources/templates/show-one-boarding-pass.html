@@ -1,0 +1,19 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<body>
+	<p>Boarding Pass</p>
+	
+	<table>
+	<tr th:each="bPass: ${innerObject}">
+		<td th:text="${bPass.getFlight().getIDFlight()}"></td>
+		<td th:text="${bPass.getUser().getEmail()}"></td>
+		<td th:text="${bPass.getSeat()}"></td>
+		
+		
+
+	</tr>
+	
+	</table>
+	
+	</body>
+
+</html>
