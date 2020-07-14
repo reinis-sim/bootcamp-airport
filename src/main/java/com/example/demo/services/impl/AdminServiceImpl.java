@@ -65,7 +65,7 @@ public class AdminServiceImpl implements IAdminService {
 		ArrayList<Flight>flightsByAirportId = new ArrayList<>();
 		for(Flight f : temp) {
 			for(Airport a : f.getAirports()) {
-				if(a.getID_Airport() == id) {
+				if(a.getIDAirport() == id) {
 					flightsByAirportId.add(f);
 				}
 			}

@@ -1,18 +1,25 @@
 package com.example.demo.models;
 
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+
+import com.fasterxml.jackson.databind.ser.std.IterableSerializer;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -28,7 +35,7 @@ public class Flight {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="ID_Flight")
+	@Column(name="IDFlight")
 
 	@Setter(AccessLevel.NONE)
 	private int IDFlight;
@@ -46,7 +53,12 @@ public class Flight {
 	private float duration;
 	
 	
-	@ManyToMany(mappedBy = "flights")
+	//@ManyToMany(mappedBy = "flights")
+	@ManyToMany
+	@JoinTable(name="Flight_Airport",
+	joinColumns = @JoinColumn(name="IDFlight"),
+	inverseJoinColumns = @JoinColumn(name="IDAirport")
+			)
 	private Collection<Airport> airports;
 	
 	
@@ -58,7 +70,6 @@ public class Flight {
 	
 	@OneToMany(mappedBy = "flight")
 	private Collection<BoardingPass> boardingPasses;
-	
 
 	public Flight() {
 		
@@ -71,7 +82,7 @@ public class Flight {
 		this.duration = duration;
 		this.airports = airports;
 		this.maxNumberOfPassangers = maxNumberOfPassangers;
-	//	this.boardingPasses = boardingPasses;
+		
 	}
 
 
@@ -146,12 +157,18 @@ public class Flight {
 		return IDFlight;
 	}
 
-
 	@Override
 	public String toString() {
-		return "Flight [ID_Flight=" + IDFlight + ", time=" + time + ", duration=" + duration + ", airports=" + airports
+		return "Flight [IDFlight=" + IDFlight + ", time=" + time + ", duration=" + duration + "]";
+	}
+
+/*
+	@Override
+	public String toString() {
+		return "Flight [IDFlight=" + IDFlight + ", time=" + time + ", duration=" + duration + ", airports=" + airports
 				+ ", maxNumberOfPassangers=" + maxNumberOfPassangers + ", boardingPasses=" + boardingPasses + "]";
 	}
+	*/
 	
 	
 

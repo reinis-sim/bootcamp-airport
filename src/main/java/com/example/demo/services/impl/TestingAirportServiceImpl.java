@@ -46,7 +46,7 @@ public class TestingAirportServiceImpl implements ITestingAirportService {
 	
 	
 	public void testModelsLayer() {
-		
+		/*
 		Location l1 = new Location("Riga", "Latvia");
 		Location l2 = new Location("Berlin", "Germany");
 		locationRepo.save(l1);
@@ -84,8 +84,7 @@ public class TestingAirportServiceImpl implements ITestingAirportService {
 		
 		
 		
-		
-		
+		*/
 		
 		
 	}

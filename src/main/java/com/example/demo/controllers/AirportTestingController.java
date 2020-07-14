@@ -25,8 +25,6 @@ import com.example.demo.services.impl.EmailServiceImpl;
 
 @Controller
 public class AirportTestingController {                  
-	@Autowired         
-	ITestingAirportService testService;          
 	
 
 	@Autowired
@@ -56,11 +54,6 @@ public class AirportTestingController {
 	@Autowired
 	AdminServiceImpl adminService;
 	
-	@GetMapping("/test")         
-	public String getTest(){                 
-		testService.testModelsLayer();                 
-		return "hello-page";         
-	}
 	
 	@GetMapping("/")
 	String test() {
@@ -106,7 +99,7 @@ public class AirportTestingController {
 			Luggage lug1 = new Luggage(12.99f, 5.75f, bo1);
 			luggageRepo.save(lug1);
 			
-			userService.register("temps","surname","email@email.com","passsss");
+			userService.register("temps","surname","email@email.com","password");
 			//flightRepo.save(new Flight(0f, 10f, airports, maxNumberOfPassangers))
 			System.out.println(userService.authenticate("email@email.com", "passsss"));
 			System.out.println(userService.authenticate("email@email.com", "passs"));

@@ -20,10 +20,10 @@ public class User {
 	@Column(name="ID_User")
 	private int id_user;
 	@Column(name="Name")
-	@Size(min = 5, max=30, message = "Name must be atleast 5-30 characters long")
+	@Size(min = 3, max=30, message = "Name must be atleast 3-30 characters long")
 	private String name;
 	@Column(name="Surname")
-	@Size(min = 5, max=30, message = "Surname must be atleast 5-30 characters long")
+	@Size(min = 3, max=30, message = "Surname must be atleast 3-30 characters long")
 	private String surname;
 	@Email(message = "Fill in correct email")
 	@Column(name="Email", unique = true)
