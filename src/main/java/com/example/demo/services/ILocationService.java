@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.example.demo.models.Location;
 
 
+
 public interface ILocationService {
 	
 	
@@ -14,6 +15,7 @@ public interface ILocationService {
 	
 	//SELECT
 	ArrayList<Location> showAllLocations();
+	Location selectOneLocationById(int id) throws Exception;
 	
 	//UPDATE
 	boolean updateLocationById(int id, String city, String country);

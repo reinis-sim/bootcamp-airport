@@ -1,0 +1,37 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+	<form action="#" th:action="@{/airport/insert}"
+		th:object="${airport}" method="post">
+		
+		<table>
+		
+			<tr> 
+				<td>Please insert TITLE </td>
+				<td> <input type="text" th:field="*{title}"> </td>
+				<td th:if="${#fields.hasErrors('title')}" th:errors="*{title}"> </td>
+			</tr>
+			
+			<tr> 
+				<td>Please insert CITY </td>
+				<td> <input type="text" th:field="*{location.city}"> </td>
+				<td th:if="${#fields.hasErrors('location.city')}" th:errors="*{location.city}"> </td>
+			</tr>
+			
+			<tr> 
+				<td>Please insert COUNTRY </td>
+				<td> <input type="text" th:field="*{location.country}"> </td>
+				<td th:if="${#fields.hasErrors('location.country')}" th:errors="*{location.country}"> </td>
+			</tr>
+			
+			
+		
+		</table>
+		
+		
+		  
+	
+		
+		<input type="submit">
+	</form>
+</body>
+</html>

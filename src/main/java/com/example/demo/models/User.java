@@ -81,25 +81,17 @@ public class User {
 	public void setEnabled(boolean isEnabled) {
 		this.isEnabled = isEnabled;
 	}
-public User() {
+	public User() {
 		
 	}
-	
-	
-	
-	
-	public User(String name,
-		String surname,
-		String email,
-		 String password, String roles,
-		boolean isEnabled) {
-	super();
-	this.name = name;
-	this.surname = surname;
-	this.email = email;
-	this.password = password;
-	this.roles = roles;
-	this.isEnabled = isEnabled;
+	public User(String name, String surname, String email, String password, String roles, boolean isEnabled) {
+		super();
+		this.name = name;
+		this.surname = surname;
+		this.email = email;
+		this.password = password;
+		this.roles = roles;
+		this.isEnabled = isEnabled;
 }
 	
 	@Override
