@@ -1,12 +1,18 @@
 package com.example.demo.controllers;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.demo.models.Luggage;
 import com.example.demo.services.IBoardingPassService;
 import com.example.demo.services.ILuggageService;
 
@@ -48,5 +54,21 @@ public class BoardingPassController {
 		catch (Exception e) {
 			return "error";
 		}
+	}
+	@GetMapping("/{pass_id}/newLuggage")
+	public String getAddNewLuggage(@PathVariable("pass_id") int pass_id, Luggage luggage) {
+		return "create-luggage";
+	}
+	@PostMapping("/{pass_id}/newLuggage")
+	public String postAddNewLuggage(@PathVariable("pass_id") int pass_id,
+			@ModelAttribute @Valid Luggage luggage,
+			BindingResult result) {
+		if(result.hasErrors()) {
+			return "create-luggage";
+		}
+		if(lugService.insertNewLuggage(luggage.getPrice(), luggage.getWeight(), pass_id )) {
+			return "redirect:/";
+		}
+		return "create-luggage";
 	}
 }
