@@ -18,7 +18,7 @@ public class FlightController {
 	@GetMapping("/showAll") // url - localhost:8080/flight/showAll
 	public String getShowAllFlights(Model model) {
 		
-		model.addAttribute("innerObject", flightService.showAllFlights());
+		model.addAttribute("flights", flightService.showAllFlights());
 		return "show-all-flights-page";// show-all-flights-page.html
 	}
 	
