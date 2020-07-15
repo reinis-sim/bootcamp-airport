@@ -14,6 +14,7 @@ public interface IAirportService {
 	//SELECT
 	ArrayList<Airport> showAllAirports();
 	Airport selectOneAirportById(int id) throws Exception;
+	Airport selectOneAirportByTitle(String title);
 	
 	//DELETE
 	boolean deleteAirportById(int id);

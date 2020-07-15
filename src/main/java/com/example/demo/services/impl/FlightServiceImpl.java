@@ -19,7 +19,12 @@ public class FlightServiceImpl implements IFlightService {
 
 	@Override
 	public boolean addFlightsByObject(Flight flight) {
-		// TODO Auto-generated method stub
+		try {
+			flightRepo.save(flight);
+			return true;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 		return false;
 	}
 

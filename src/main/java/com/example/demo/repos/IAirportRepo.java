@@ -10,5 +10,7 @@ public interface IAirportRepo extends CrudRepository<Airport, Integer> {
 	boolean existsByTitleAndLocation(String title, Location location);
 
 	boolean existsByTitleAndLocationCity(String title, String city);
+	
+	Airport findByTitle(String title);
 
 }

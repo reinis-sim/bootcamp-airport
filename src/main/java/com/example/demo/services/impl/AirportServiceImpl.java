@@ -37,9 +37,6 @@ public class AirportServiceImpl implements IAirportService{
 
 	@Override
 	public boolean addAirportByObject(Airport airport) {
-
-		
-		
 		if(airportRepo.existsByTitleAndLocationCity(airport.getTitle(), airport.getLocation().getCity()))
 		{
 			return false;
@@ -52,8 +49,6 @@ public class AirportServiceImpl implements IAirportService{
 		Airport air = new Airport(airport.getTitle(),airport.getFlights() ,locFromDB);
 		airportRepo.save(air);
 		return true;
-		
-		
 	}
 
 	@Override
@@ -120,6 +115,17 @@ public class AirportServiceImpl implements IAirportService{
 			
 		}
 		return false;
+	}
+
+	@Override
+	public Airport selectOneAirportByTitle(String title) {
+		System.out.println(title);
+		try {
+			return airportRepo.findByTitle(title);
+		} catch (Exception e) {
+			System.out.println(e);
+			return new Airport();
+		}
 	}
 
 }
