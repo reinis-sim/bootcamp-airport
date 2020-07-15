@@ -4,12 +4,16 @@
 	
 	<table>
 	<tr th:each="lug: ${innerObject}">
+		<td><label>Weight</label></td>
 		<td th:text="${lug.getWeight()}"></td>
+		<td><label>Price</label></td>
 		<td th:text="${lug.getPrice()}"></td>
-		<td th:text="${lug.getBoardingPass().getIDBPass()}"></td>
+
 		
 		
 
+		<td><label>Boarding Pass ID</label></td>
+		<td th:text="${lug.getBoardingPass().getIDBPass()}"></td>
 	</tr>
 	
 	</table>

@@ -58,10 +58,7 @@ public class UserController {
 	}
 	@GetMapping("/allFlights")
 	public String selectAllFlights(Model model) {
-		//System.out.println(">>>>"+userService.selectAllFlights());
 		model.addAttribute("flights",userService.selectAllFlights());
-		//System.out.println(userService.selectAllFlights().get(0).getAirports());
-		//model.addAttribute("",
 		return "user-bookings";
 	}
 	@GetMapping("/booked")
