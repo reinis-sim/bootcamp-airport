@@ -2,6 +2,7 @@ package com.example.demo.controllers;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 
 import com.example.demo.models.User;
 
@@ -68,8 +69,8 @@ public class AirportTestingController {
 			locationRepo.save(l2);
 			Airport a1 = new Airport("RIX",  l1);
 			Airport a2 = new Airport("BXX",  l2);
-			Airport a3 = new Airport("qqqq",l1);
-			Airport a4 = new Airport("wwww",l1);
+			Airport a3 = new Airport("qqqq", l1);
+			Airport a4 = new Airport("wwww", l1);
 			airportRepo.save(a1);
 			airportRepo.save(a2);
 			airportRepo.save(a3);
@@ -92,9 +93,10 @@ public class AirportTestingController {
 			
 			User u1 = new User("name1","surname1","123@gmail", "parole123", "ROLE_ADMIN", true);
 			User u2 = new User("name2","surname2","abc@gmail", "paro321", "ROLE_USER", true);
+			User u3 = new User("MYAdmin","surname","admin@email.com",BCrypt.hashpw("password", BCrypt.gensalt()),"ROLE_ADMIN",true);
 			userRepo.save(u1);
 			userRepo.save(u2);
-			
+			userRepo.save(u3);
 			BoardingPass bo1 = new BoardingPass(f1, u1, 23);
 			BoardingPass bo2 = new BoardingPass(f1, u2, 25);
 			boardingPassRepo.save(bo1);
@@ -103,20 +105,21 @@ public class AirportTestingController {
 			Luggage lug1 = new Luggage(12.99f, 5.75f, bo1);
 			luggageRepo.save(lug1);
 			
-			userService.register("temps","surname","email@email.com","password");
-			//flightRepo.save(new Flight(0f, 10f, airports, maxNumberOfPassangers))
-			System.out.println(userService.authenticate("email@email.com", "passsss"));
-			System.out.println(userService.authenticate("email@email.com", "passs"));
+			userService.register("MYUser","surname","user@email.com","password");
 			
-			System.out.println(userService.bookFlight(userRepo.findByEmail("email@email.com"), f1, null));
-			System.out.println(userService.bookFlight(userRepo.findByEmail("email@email.com"), f1, null));
-			System.out.println("All Flights");
-			System.out.println(userService.selectAllFlights());
-			System.out.println("All flights in airport");
-			System.out.println(userService.selectAllFlightsInAirport(a2));
-			System.out.println("Booked flights by user");
-			System.out.println(userService.selectBookedFlightsByUser(userRepo.findByEmail("email@email.com")));
-			System.out.println("One booked flight by boardingpass");
+			//flightRepo.save(new Flight(0f, 10f, airports, maxNumberOfPassangers))
+			//System.out.println(userService.authenticate("email@email.com", "passsss"));
+			//System.out.println(userService.authenticate("email@email.com", "passs"));
+			
+			System.out.println(userService.bookFlight(userRepo.findByEmail("user@email.com"), f1, null));
+			System.out.println(userService.bookFlight(userRepo.findByEmail("user@email.com"), f2, null));
+			//System.out.println("All Flights");
+			//System.out.println(userService.selectAllFlights());
+			//System.out.println("All flights in airport");
+			//System.out.println(userService.selectAllFlightsInAirport(a2));
+			//System.out.println("Booked flights by user");
+			//System.out.println(userService.selectBookedFlightsByUser(userRepo.findByEmail("email@email.com")));
+			//System.out.println("One booked flight by boardingpass");
 			//System.out.println(userService.selectOneBookedFlightByUser(boardingPassRepo.findById(14).get()));
 			//System.out.println("Saving PDF");
 			
