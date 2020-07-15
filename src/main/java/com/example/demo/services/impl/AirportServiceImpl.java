@@ -6,9 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.models.Airport;
+import com.example.demo.models.BoardingPass;
+import com.example.demo.models.Flight;
 import com.example.demo.models.Location;
+import com.example.demo.models.Luggage;
 import com.example.demo.repos.IAirportRepo;
+import com.example.demo.repos.IBoardingPassRepo;
+import com.example.demo.repos.IFlightRepo;
 import com.example.demo.repos.ILocationRepo;
+import com.example.demo.repos.ILuggageRepo;
 import com.example.demo.services.IAirportService;
 
 @Service
@@ -19,6 +25,15 @@ public class AirportServiceImpl implements IAirportService{
 	
 	@Autowired
 	ILocationRepo locationRepo;
+	
+	@Autowired
+	IFlightRepo flightRepo;
+	
+	@Autowired
+	IBoardingPassRepo bpRepo;
+	
+	@Autowired
+	ILuggageRepo luggRepo;
 
 	@Override
 	public boolean addAirportByObject(Airport airport) {
@@ -63,12 +78,25 @@ public class AirportServiceImpl implements IAirportService{
 
 	@Override
 	public boolean deleteAirportById(int id){
-
 		if(id>0)
 		{
 			if(airportRepo.existsById(id))
 			{
-				airportRepo.deleteById(id);
+				Airport airport = airportRepo.findById(id).get();
+				//Deletes All Airport Flights
+				for(Flight flight : airport.getFlights()) {
+					flight.setAirports(null);
+					//Deletes All Flight BoardingPasses
+					for(BoardingPass pass : flight.getBoardingPasses()) {
+						//Deletes All BoardingPasses Luggages
+						for(Luggage luggage : pass.getAllLuggage()) {
+							luggRepo.delete(luggage);
+						}
+						bpRepo.delete(pass);
+					}
+					flightRepo.delete(flight);
+				}
+				airportRepo.delete(airport);
 				return true;
 				
 			}
