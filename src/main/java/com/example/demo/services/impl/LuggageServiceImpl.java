@@ -88,14 +88,6 @@ public class LuggageServiceImpl implements ILuggageService {
 		}
 		return false;
 	}
-	@Override
-	public boolean deleteLuggageByBoardingPass(int id) {
-		if(lugRepo.existsByBoardingPassIDBPass(id)) {
-			lugRepo.removeByBoardingPassIDBPass(id);
-			return true;
-		}
-		return false;
-	}
 	
 
 }

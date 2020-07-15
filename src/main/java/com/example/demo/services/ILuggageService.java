@@ -24,7 +24,6 @@ public interface ILuggageService {
 	
 	//delete 
 	boolean deleteLuggage(int id);
-	boolean deleteLuggageByBoardingPass(int id);
 	
 	
 }

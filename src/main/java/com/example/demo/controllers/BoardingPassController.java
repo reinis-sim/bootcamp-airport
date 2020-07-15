@@ -60,7 +60,7 @@ public class BoardingPassController {
 	{
 		try
 		{
-			lugService.deleteLuggageByBoardingPass(id);
+			
 			bpService.deleteBoardingPassById(id);
 			
 			model.addAttribute("innerObject", bpService.selectAllBoardingPasses());
