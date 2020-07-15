@@ -1,0 +1,32 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+	<form action="#" th:action="@{/flight/insert}"
+		th:object="${flight}" method="post">
+		
+		<table>
+		
+			<tr> 
+				<td>Please insert TIME </td>
+				<td> <input type="text" th:field="*{time}"> </td>
+				<td th:if="${#fields.hasErrors('time')}" th:errors="*{time}"> </td>
+			</tr>
+			
+			<tr> 
+				<td>Please insert flight FROM </td>
+				<td> <input type="text" th:field="*{airports.title}"> </td>
+				<td th:if="${#fields.hasErrors('airports.title')}" th:errors="*{airports.title}"> </td>
+			</tr>
+			
+
+			
+		
+		</table>
+		
+		
+		  
+	
+		
+		<input type="submit">
+	</form>
+</body>
+</html>

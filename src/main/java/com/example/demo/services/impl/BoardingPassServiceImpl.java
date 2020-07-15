@@ -79,5 +79,16 @@ public class BoardingPassServiceImpl implements IBoardingPassService{
 		throw new Exception("Id is not correct and there is not customer with that id in System");
 		
 	}
+
+	@Override
+	public boolean deleteBoardingPassById(int id) {
+		if(id>0) {
+			if(bpRepo.existsById(id)) {
+				bpRepo.deleteById(id);
+				return true;
+			}
+		}
+		return false;
+	}
 	
 }

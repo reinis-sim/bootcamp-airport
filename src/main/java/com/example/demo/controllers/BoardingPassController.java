@@ -49,4 +49,18 @@ public class BoardingPassController {
 			return "error";
 		}
 	}
+	@GetMapping("/deleteBoardingPass/{id}")
+	public String getDeleteProductById(@PathVariable(name = "id") int id, Model model)
+	{
+		try
+		{
+			bpService.deleteBoardingPassById(id);
+			
+			model.addAttribute("innerObject", bpService.selectAllBoardingPasses());
+			return "show-all-boarding-pass";// show-all-products-page.html
+		}
+		catch (Exception e) {
+			return "error";
+		}
+}
 }

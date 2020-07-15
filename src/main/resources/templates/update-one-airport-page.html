@@ -1,0 +1,22 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+        <form action="#" th:action="@{/airport/updateAirport/__${id}__}"
+                th:object="${airport}" method="post">
+                
+                <table>
+                        <tr> 
+                                <td>Please insert title </td>
+                                <td> <input type="text" th:field="*{title}" th:value="${title}"> </td>
+                                <td th:if="${#fields.hasErrors('title')}" th:errors="*{title}"> </td>
+                        </tr>
+                
+                     
+                
+                
+                
+                </table>
+                
+                <input type="submit">
+        </form>
+</body>
+</html>
