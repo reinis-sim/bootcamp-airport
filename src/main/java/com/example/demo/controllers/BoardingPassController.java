@@ -71,4 +71,40 @@ public class BoardingPassController {
 		}
 		return "create-luggage";
 	}
+	@GetMapping("/{pass_id}/{lugg_id}/update")
+	public String getUpdateLuggage(@PathVariable("pass_id") int pass_id,
+			@PathVariable("lugg_id") int lugg_id, 
+			Model model) {
+		try {
+			model.addAttribute("luggage",lugService.selectOneLuggageById(lugg_id));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "update-luggage";
+	}
+	@PostMapping("/{pass_id}/{lugg_id}/update")
+	public String postUpdateLuggage(@PathVariable("pass_id") int pass_id,
+			@PathVariable("lugg_id") int lugg_id,
+			Luggage luggage, BindingResult result) {
+		if(result.hasErrors()) {
+			return "update-luggage";
+		}
+		try {
+			lugService.updateLuggage(lugg_id, luggage);
+			
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return "update-luggage";
+		}
+		return "redirect:/";
+	}
+	@GetMapping("/{pass_id}/{lugg_id}/delete")
+	public String getDeleteLuggage(@PathVariable("pass_id") int pass_id,@PathVariable("lugg_id")int lugg_id) {
+		try {
+			lugService.deleteLuggage(lugg_id);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return "redirect:/";
+	}
 }

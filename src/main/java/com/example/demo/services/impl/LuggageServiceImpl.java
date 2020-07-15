@@ -74,7 +74,6 @@ public class LuggageServiceImpl implements ILuggageService {
 			return false;
 		}
 		Luggage updateLug = lugRepo.findById(id).get();
-		updateLug.setBoardingPass(luggage.getBoardingPass());
 		updateLug.setPrice(luggage.getPrice());
 		updateLug.setWeight(luggage.getWeight());
 		lugRepo.save(updateLug);
