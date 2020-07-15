@@ -16,7 +16,14 @@ public interface ILuggageService {
 	
 	//create
 	boolean insertNewLuggage(float price, float weight, BoardingPass boardingPass);
+	boolean insertNewLuggage(float price, float weight, int boardingPass_id);
 	boolean insertNewLuggageByObject(Luggage luggage);
+	
+	//update
+	boolean updateLuggage(int id, Luggage luggage);
+	
+	//delete 
+	boolean deleteLuggage(int id);
 	
 	
 }
