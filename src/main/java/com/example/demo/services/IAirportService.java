@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.example.demo.models.Airport;
 import com.example.demo.models.Location;
 
+
 public interface IAirportService {
 	
 	//INSERT
@@ -16,5 +17,8 @@ public interface IAirportService {
 	
 	//DELETE
 	boolean deleteAirportById(int id);
+	
+	//UPDATE
+	boolean updateAirportObjectById(int id, Airport airport);
 
 }

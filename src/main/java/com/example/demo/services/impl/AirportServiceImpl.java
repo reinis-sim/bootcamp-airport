@@ -76,4 +76,22 @@ public class AirportServiceImpl implements IAirportService{
 		return false;
 	}
 
+	
+	@Override
+	public boolean updateAirportObjectById(int id, Airport airport) {
+		if(id>0)
+		{
+			
+			if(airportRepo.existsById(id))
+			{
+				Airport airportToUpdate = airportRepo.findById(id).get();
+				airportToUpdate.setTitle(airport.getTitle());
+				airportRepo.save(airportToUpdate);
+				return true;
+			}
+			
+		}
+		return false;
+	}
+
 }

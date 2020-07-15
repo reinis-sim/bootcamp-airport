@@ -84,6 +84,34 @@ public class AirportController {
 	}
 	
 	
+	//update functionality
+	@GetMapping("/update/{id}")//url address->localhost:8080/airport/update/{id}
+	public String getUpdateAirportById(@PathVariable(name = "id") int id, Model model, Airport airport) {
+	
+		try
+		{
+			Airport airportForUpdate = airportService.selectOneAirportById(id);
+			model.addAttribute("airport", airportForUpdate);
+			return "update-one-airport-page";
+		}
+		catch (Exception e) {
+			return "error";
+		}
+		}
+	
+	
+	
+	@PostMapping("/updateAirport/{id}")
+	public String postUpdateAirportById(@PathVariable(name = "id") int id, Airport airport)
+	{
+
+		System.out.println(airport);
+		
+		airportService.updateAirportObjectById(id, airport);
+		return "redirect:/airport/showAll";
+	}
+	
+	
 	
 
 }

@@ -1,12 +1,18 @@
 package com.example.demo.controllers;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.demo.models.Airport;
+import com.example.demo.models.Flight;
 import com.example.demo.services.IFlightService;
 
 @Controller
@@ -35,6 +41,28 @@ public class FlightController {
 		catch (Exception e) {
 			return "error";
 		}
+	}
+	
+	@GetMapping ("/insert") // url - localhost:8080/flight/insert
+	public String getInsertFlight(Flight flight)
+	{
+		return "insert-flight-page";//insert-flight-page.html
+	}
+	
+	
+	@PostMapping("/insert")
+	public String postInsertFlight(@Valid Flight flight, BindingResult result)
+	{
+		System.out.println(flight);
+		
+		if(result.hasErrors())
+		{
+			return "insert-flight-page";
+		}
+				
+		flightService.addFlightsByObject(flight);
+		return "redirect:/flight/showAll";
+		
 	}
 	
 
