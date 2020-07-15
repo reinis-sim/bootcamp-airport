@@ -65,5 +65,21 @@ public class FlightController {
 		
 	}
 	
-
+	/*
+	
+	@GetMapping("/delete/{id}")
+	public String getDeleteFlightById(@PathVariable(name = "id") int id, Model model)
+	{
+		try
+		{
+			flightService.deleteFlightById(id);
+			
+			model.addAttribute("innerObject", flightService.showAllFlights());
+			return "show-all-flights-page";// show-all-flights-page.html
+		}
+		catch (Exception e) {
+			return "error";
+		}
+	}
+*/
 }
