@@ -79,7 +79,6 @@ public class FlightController {
 			airportList.add(fromAirp);
 			airportList.add(toAirp);
 			flight.setAirports(airportList);
-			System.out.println(flight);
 			flightService.addFlightsByObject(flight);
 			return "redirect:/flight/showAll";
 		} catch (Exception e) {

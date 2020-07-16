@@ -119,7 +119,6 @@ public class AirportServiceImpl implements IAirportService{
 
 	@Override
 	public Airport selectOneAirportByTitle(String title) {
-		System.out.println(title);
 		try {
 			return airportRepo.findByTitle(title);
 		} catch (Exception e) {

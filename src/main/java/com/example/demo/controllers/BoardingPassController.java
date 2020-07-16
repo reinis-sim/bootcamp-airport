@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -106,5 +107,10 @@ public class BoardingPassController {
 			System.out.println(e.getMessage());
 		}
 		return "redirect:/";
+	}
+	@GetMapping("/{pass_id}/email")
+	public String postSendBoardingPassToEmail() {
+		System.out.println("email page");
+		return "hello-page";
 	}
 }

@@ -1,19 +1,31 @@
-<html xmlns:th="http://www.thymeleaf.org">
-	<body>
-	<p>Boarding Pass</p>
-	
-	<table>
-	<tr th:each="bPass: ${innerObject}">
-		<td th:text="${bPass.getFlight().getIDFlight()}"></td>
-		<td th:text="${bPass.getUser().getEmail()}"></td>
-		<td th:text="${bPass.getSeat()}"></td>
-		
-		
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></head>
+<body>
+	<!-- NAV BAR -->
+	<div th:insert="fragments/nav-bar.html" :: header></div>  
+	<!-- Additional Data Here -->
+	<div class="card">
+		<div class="card-header">
+		BOARDING PASS
+		</div>
+		<div class="card-body">
+			<h5 th:text="'NAME: '+${innerObject.user.name}+' '+${innerObject.user.surname} " class="card-title">Name</h5>
+			<p th:text="'EMAIL: '+${innerObject.user.email}" class="card-title">email</p>
+			<p th:text="'SEAT: '+${innerObject.seat}" class="card-text"></p>
+			<p th:text="'PASS: '+${innerObject.IDBPass}" class="card-text"></p>
+			<p class="card-text">LUGGAGE:</p>
+			<ul>
+				<li th:each="luggage : ${innerObject.allLuggage}" th:text="${luggage}"></li>
+			</ul>
+			<a th:href="@{${innerObject.IDBPass}+'/email'}" class="btn btn-primary">Send PDF to email</a>
+		</div>
+	</div>
 
-	</tr>
-	
-	</table>
-	
-	</body>
-
+	<!-- Bootstrap Import -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
 </html>

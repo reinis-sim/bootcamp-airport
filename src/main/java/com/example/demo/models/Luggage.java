@@ -65,6 +65,10 @@ public class Luggage {
 	public int getID_Luggage() {
 		return ID_Luggage;
 	}
+	@Override
+	public String toString() {
+		return "Luggage [price=" + price + ", weight=" + weight + "]";
+	}
 	
 	
 	
