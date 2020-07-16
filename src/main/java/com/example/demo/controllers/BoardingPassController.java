@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.demo.models.BoardingPass;
 import com.example.demo.models.Luggage;
 import com.example.demo.services.IBoardingPassService;
 import com.example.demo.services.ILuggageService;
