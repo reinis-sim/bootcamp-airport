@@ -20,6 +20,7 @@
 				<li th:each="bpass : ${innerObject.boardingPasses}" th:text="'ID: '+${bpass.IDBPass}+' Seat:'+${bpass.seat}"></li>
 			</ul>
 			<a th:href="@{'/flight/'+${innerObject.IDFlight}+'/delete'}" class="btn btn-danger">Delete Flight</a>
+			<a th:href="@{'/flight/'+${innerObject.IDFlight}+'/book'}" class="btn btn-success">Book Flight</a>
 		</div>
 	</div>
 	<!-- Bootstrap Import -->

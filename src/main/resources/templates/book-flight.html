@@ -6,23 +6,33 @@
 	<!-- NAV BAR -->
 	<div th:insert="fragments/nav-bar.html" :: header></div>  
 	<!-- Additional Data Here -->
-	<form action="#" th:action="@{/user/book}" modelAttribute="flight" th:object="${flight}" method="post">
+	<div class="card">
+		<div class="card-header">
+		FLIGHT DETAILS
+		</div>
+		<div class="card-body">
+			<p th:text="'FROM: '+${innerObject.airports.stream().findFirst().get().getTitle()}" class="card-title">from</p>
+			<p th:text="'TO: '+${innerObject.airports.stream().skip(1).findFirst().get().getTitle()}" class="card-title">to</p>
+			<p th:text="'DURATION: '+${innerObject.duration}" class="card-text"></p>
+			<p th:text="'DEPARTING: '+${innerObject.time}" class="card-text"></p>
+		</div>
+	</div>
+	<!-- Luggage form -->
+	<form action="#" th:action="@{/flight/__${flight_id}__/book}" modelAttribute="luggage" th:object="${luggage}" method="post">
 		<div class="form-group">
-			<label for="name">Name</label>
-			<input  th:field="*{name}" placeholder="Name" type="text" id="name"  class="form-control">
+			<label for="weight">Weight</label>
+			<input  th:field="*{weight}" placeholder="Weight (kg)" type="text" id="weight"  class="form-control">
+			<div th:if="${#fields.hasErrors('weight')}" th:errors="*{weight}" class="alert alert-danger" role="alert"></div>
 		</div>
 		<div class="form-group">
-			<label for="name">Surname</label>
-			<input  th:field="*{surname}" placeholder="Surname" type="text" id="surname"  class="form-control">
+			<label for="price">Price</label>
+			<input  th:field="*{price}" placeholder="Price" type="text" id="price"  class="form-control">
+			<div th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="alert alert-danger" role="alert"></div>
 		</div>
+		
 		<div class="form-group">
-			<label for="name">Email</label>
-			<input  th:field="*{email}" placeholder="your@email.com" type="text" id="email"  class="form-control">
+			<button type="submit" class="btn btn-primary">Submit</button>
 		</div>
-		<div class="form-group">
-			<label for="name">Password</label>
-			<input  th:field="*{password}" placeholder="Password" type="password" id="password"  class="form-control">
-		</div>	
 	</form>
 	
 	<!-- Bootstrap Import -->
