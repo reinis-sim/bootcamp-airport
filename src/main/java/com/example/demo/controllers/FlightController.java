@@ -43,7 +43,7 @@ public class FlightController {
 	public String getShowAllFlightsId(@PathVariable(name = "id") int id, Model model) {
 		try
 		{
-			model.addAttribute("innerObject", flightService.selectOneFlightById(id));
+			model.addAttribute("flights", flightService.selectOneFlightById(id));
 			return "show-one-flight-page";// show-one-flight-page.html
 			
 		}
