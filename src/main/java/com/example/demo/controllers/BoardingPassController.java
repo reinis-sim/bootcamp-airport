@@ -103,7 +103,7 @@ public class BoardingPassController {
 		}
 		return "redirect:/";
 	}
-	@GetMapping("/{pass_id}/{lugg_id}/delete")
+	@GetMapping("/showOneBoardingPass/{pass_id}/{lugg_id}/delete")
 	public String getDeleteLuggage(@PathVariable("pass_id") int pass_id,@PathVariable("lugg_id")int lugg_id) {
 		try {
 			lugService.deleteLuggage(lugg_id);
@@ -123,6 +123,6 @@ public class BoardingPassController {
 			System.out.println(e.getMessage());
 			return "error";
 		}
-		return "redirect:/";
+		return "show";
 	}
 }
