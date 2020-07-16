@@ -19,7 +19,8 @@
 			<ul>
 				<li th:each="luggage : ${innerObject.allLuggage}" th:text="${luggage}"></li>
 			</ul>
-			<a th:href="@{${innerObject.IDBPass}+'/email'}" class="btn btn-primary">Send PDF to email</a>
+			<a th:href="@{'/boardingPass/showOneBoardingPass/'+${innerObject.IDBPass}+'/email'}" class="btn btn-primary">Send PDF to email</a>
+			<a th:href="@{'/boardingPass/deleteBoardingPass/'+${innerObject.IDBPass}}" class="btn btn-danger">Delete Boarding Pass</a>
 		</div>
 	</div>
 	<!-- Bootstrap Import -->

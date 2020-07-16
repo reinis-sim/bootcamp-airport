@@ -11,16 +11,16 @@
 		FLIGHT
 		</div>
 		<div class="card-body">
-			<p th:text="'FROM: '+${innerObject.airports.stream().findFirst().get().getTitle()}" class="card-title">from</p>
-			<p th:text="'TO: '+${innerObject.airports.stream().skip(1).findFirst().get().getTitle()}" class="card-title">to</p>
-			<p th:text="'DURATION: '+${innerObject.duration}" class="card-text"></p>
-			<p th:text="'DEPARTING: '+${innerObject.time}" class="card-text"></p>
+			<p th:text="'FROM: '+${flights.airports.stream().findFirst().get().getTitle()}" class="card-title">from</p>
+			<p th:text="'TO: '+${flights.airports.stream().skip(1).findFirst().get().getTitle()}" class="card-title">to</p>
+			<p th:text="'DURATION: '+${flights.duration}" class="card-text"></p>
+			<p th:text="'DEPARTING: '+${flights.time}" class="card-text"></p>
 			<p class="card-text">BOARDING PASSES:</p>
 			<ul>
-				<li th:each="bpass : ${innerObject.boardingPasses}" th:text="'ID: '+${bpass.IDBPass}+' Seat:'+${bpass.seat}"></li>
+				<li th:each="bpass : ${flights.boardingPasses}" th:text="'ID: '+${bpass.IDBPass}+' Seat:'+${bpass.seat}"></li>
 			</ul>
-			<a th:href="@{'/flight/'+${innerObject.IDFlight}+'/delete'}" class="btn btn-danger">Delete Flight</a>
-			<a th:href="@{'/flight/'+${innerObject.IDFlight}+'/book'}" class="btn btn-success">Book Flight</a>
+			<a th:href="@{'/flight/'+${flights.IDFlight}+'/delete'}" class="btn btn-danger">Delete Flight</a>
+			<a th:href="@{'/flight/'+${flights.IDFlight}+'/book'}" class="btn btn-success">Book Flight</a>
 		</div>
 	</div>
 	<!-- Bootstrap Import -->
