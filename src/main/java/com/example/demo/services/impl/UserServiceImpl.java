@@ -14,6 +14,7 @@ import com.example.demo.models.Luggage;
 import com.example.demo.models.User;
 import com.example.demo.repos.IBoardingPassRepo;
 import com.example.demo.repos.IFlightRepo;
+import com.example.demo.repos.ILuggageRepo;
 import com.example.demo.repos.IUserRepo;
 import com.example.demo.services.IUserService;
 import com.itextpdf.text.Document;
@@ -31,6 +32,8 @@ public class UserServiceImpl implements IUserService {
 	IFlightRepo flightRepo;
 	@Autowired
 	IBoardingPassRepo boardingRepo;
+	@Autowired
+	ILuggageRepo luggRepo;
 	
 	@Override
 	public boolean register(String name, String surname, String email, String password) {
@@ -58,8 +61,20 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public boolean bookFlight(User user, Flight flight, ArrayList<Luggage>allLuggage) {
 		if(!boardingRepo.existsByUserAndFlight(user, flight)) {
+			int seat = 1;
+			if(!(flight.getBoardingPasses().isEmpty())) {
+				seat = flight.getBoardingPasses().size()+1;
+			}
 			//TODO create seat logic
-			boardingRepo.save(new BoardingPass(flight, user, 0, allLuggage));
+			BoardingPass boardingPass = new BoardingPass(flight,user,seat);
+			boardingRepo.save(boardingPass);
+			luggRepo.saveAll(allLuggage);
+			if(!allLuggage.equals(null)) {
+				for(Luggage luggage : allLuggage) {
+					//price weight bp
+					luggRepo.save(new Luggage(luggage.getPrice(),luggage.getWeight(),boardingPass));
+				}
+			}
 			return true;
 		}else {
 			return false;
@@ -110,6 +125,21 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public User selectOneUserByEmail(String email) {
 		return userRepo.findByEmail(email);
+	}
+
+	@Override
+	public boolean userCheckIn(int BP_ID, String surname) {
+		if(BP_ID > 0) {
+			if(boardingRepo.existsById(BP_ID)) {
+				if(boardingRepo.findById(BP_ID).get().getUser().getSurname().equals(surname)) {
+					BoardingPass tempPass = boardingRepo.findById(BP_ID).get();
+					tempPass.setCheckedIn(true);
+					boardingRepo.save(tempPass);
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 	

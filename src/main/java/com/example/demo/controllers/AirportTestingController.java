@@ -111,8 +111,8 @@ public class AirportTestingController {
 			//System.out.println(userService.authenticate("email@email.com", "passsss"));
 			//System.out.println(userService.authenticate("email@email.com", "passs"));
 			
-			System.out.println(userService.bookFlight(userRepo.findByEmail("user@email.com"), f1, null));
-			System.out.println(userService.bookFlight(userRepo.findByEmail("user@email.com"), f2, null));
+			//System.out.println(userService.bookFlight(userRepo.findByEmail("user@email.com"), f1, new ArrayList<Luggage>()));
+			//System.out.println(userService.bookFlight(userRepo.findByEmail("user@email.com"), f2, new ArrayList<Luggage>()));
 			//System.out.println("All Flights");
 			//System.out.println(userService.selectAllFlights());
 			//System.out.println("All flights in airport");

@@ -6,6 +6,9 @@ import java.util.Arrays;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,9 +21,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.models.Airport;
 import com.example.demo.models.Flight;
+import com.example.demo.models.Luggage;
 import com.example.demo.repos.IAirportRepo;
+import com.example.demo.repos.IBoardingPassRepo;
+import com.example.demo.repos.IUserRepo;
 import com.example.demo.services.IAirportService;
 import com.example.demo.services.IFlightService;
+import com.example.demo.services.IUserService;
 
 @Controller
 @RequestMapping("/flight")
@@ -30,7 +37,12 @@ public class FlightController {
 	IFlightService flightService;
 	@Autowired
 	IAirportService airportService;
-	
+	@Autowired
+	IUserService userService;
+	@Autowired
+	IUserRepo userRepo;
+	@Autowired
+	IBoardingPassRepo bpRepo;
 	@GetMapping("/showAll") // url - localhost:8080/flight/showAll
 	public String getShowAllFlights(Model model) {
 		
@@ -87,5 +99,43 @@ public class FlightController {
 		}
 	}
 	
-
+	@GetMapping("/{id}/delete")
+	public String deleteFlight(@PathVariable int id) {
+		flightService.deleteFlightById(id);
+		return "redirect:/flight/showAll";
+	}
+	
+	@GetMapping("/{flight_id}/book")
+	public String getBookFlight(@PathVariable int flight_id, Model model, Luggage luggage) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if(!auth.isAuthenticated()) {
+			return "error2";
+		}
+        UserDetails userDetail = (UserDetails) auth.getPrincipal();
+        if(userService.authenticate(userDetail.getUsername(), userDetail.getPassword())) {
+        	try {
+				model.addAttribute("innerObject",flightService.selectOneFlightById(flight_id));
+				return "book-flight";
+        	} catch (Exception e) {
+				System.out.println("Error booking a flight:");
+				System.out.println(e.getMessage());
+			}
+        }
+		return "error";
+	}
+	@PostMapping("/{flight_id}/book")
+	public String postBookFlight(@PathVariable int flight_id, @Valid Luggage luggage) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        UserDetails userDetail = (UserDetails) auth.getPrincipal();
+        ArrayList<Luggage>allLuggage = new ArrayList<Luggage>();
+        allLuggage.add(luggage);
+        System.out.println(allLuggage);
+        try {
+			userService.bookFlight(userRepo.findByEmail(userDetail.getUsername()), flightService.selectOneFlightById(flight_id), allLuggage);
+		} catch (Exception e) {
+			System.out.println("Error booking a flight:");
+			System.out.println(e.getMessage());
+		}
+		return "redirect:/";
+	}
 }
