@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.demo.models.BoardingPass;
 import com.example.demo.models.Luggage;
 import com.example.demo.services.IBoardingPassService;
 import com.example.demo.services.ILuggageService;
+import com.example.demo.services.impl.EmailServiceImpl;
 
 @Controller
 @RequestMapping("/boardingPass")
@@ -27,6 +29,8 @@ public class BoardingPassController {
 	IBoardingPassService bpService;
 	@Autowired
 	ILuggageService lugService;
+	@Autowired
+	EmailServiceImpl emailService;
 	
 	@GetMapping("/showAllBoardingPass") // url address->localhost:8080/boardingPass/showAllBoardingPass
 	public String getShowAllBoardingPass(Model model) {
@@ -108,9 +112,17 @@ public class BoardingPassController {
 		}
 		return "redirect:/";
 	}
-	@GetMapping("/{pass_id}/email")
-	public String postSendBoardingPassToEmail() {
-		System.out.println("email page");
-		return "hello-page";
+	@GetMapping("/showOneBoardingPass/{pass_id}/email")
+	public String postSendBoardingPassToEmail(@PathVariable int pass_id) {
+		BoardingPass temp;
+		try {
+			temp = bpService.selectOneBoardingPassById(pass_id);
+			emailService.sendEmail(temp.getUser().getEmail(), temp);
+		} catch (Exception e) {
+			System.out.println("Error sending:");
+			System.out.println(e.getMessage());
+			return "error";
+		}
+		return "redirect:/";
 	}
 }
