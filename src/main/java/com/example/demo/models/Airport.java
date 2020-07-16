@@ -126,23 +126,7 @@ public class Airport {
 
 	@Override
 	public String toString() {
-		return "Airport [IDAirport=" + IDAirport + ", title=" + title + ", flights=" + flights + ", location="
-				+ location + "]";
+		return "Airport [IDAirport=" + IDAirport + ", title=" + title + "]";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 }

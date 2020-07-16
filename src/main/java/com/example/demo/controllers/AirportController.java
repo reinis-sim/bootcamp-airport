@@ -75,10 +75,12 @@ public class AirportController {
 		{
 			airportService.deleteAirportById(id);
 			
-			model.addAttribute("innerObject", airportService.showAllAirports());
-			return "show-all-airports-page";// show-all-airports-page.html
+			//model.addAttribute("innerObject", airportService.showAllAirports());
+			//return "show-all-airports-page";// show-all-airports-page.html
+			return "redirect:/getShowAllAirports";
 		}
 		catch (Exception e) {
+			System.out.println(e.getMessage());
 			return "error";
 		}
 	}

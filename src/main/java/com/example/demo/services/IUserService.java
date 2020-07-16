@@ -19,4 +19,5 @@ public interface IUserService {
 	ArrayList<Flight>selectBookedFlightsByUser(User user);
 	Document exportBookedFlightAsPDF(BoardingPass boardingPass, ByteArrayOutputStream outputStream);
 	Flight selectOneBookedFlightByUser(BoardingPass boardingPass);
+	User selectOneUserByEmail(String email);
 }

@@ -1,32 +1,39 @@
-<html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></head>
 <body>
-	<form action="#" th:action="@{/flight/insert}"
-		th:object="${flight}" method="post">
-		
-		<table>
-		
-			<tr> 
-				<td>Please insert TIME </td>
-				<td> <input type="text" th:field="*{time}"> </td>
-				<td th:if="${#fields.hasErrors('time')}" th:errors="*{time}"> </td>
-			</tr>
-			
-			<tr> 
-				<td>Please insert flight FROM </td>
-				<td> <input type="text" th:field="*{airports.title}"> </td>
-				<td th:if="${#fields.hasErrors('airports.title')}" th:errors="*{airports.title}"> </td>
-			</tr>
-			
-
-			
-		
-		</table>
-		
-		
-		  
-	
-		
-		<input type="submit">
+	<!-- NAV BAR -->
+	<div th:insert="fragments/nav-bar.html" :: header></div>  
+	<!-- Additional Data Here -->
+	<form action="#" th:action="@{/flight/insert}" method="post">
+		<div class="form-group">
+			<label for="time">Time</label>
+			<input  th:field="*{flight.time}" placeholder="Time" type="text" id="time"  class="form-control">
+			<div th:if="${#fields.hasErrors('flight.time')}" th:errors="*{flight.time}" class="alert alert-danger" role="alert"></div>
+		</div>
+		<div class="form-group">
+			<label for="duration">Duration</label>
+			<input  th:field="*{flight.duration}" placeholder="Duration" type="text" id="duration"  class="form-control">
+			<div th:if="${#fields.hasErrors('flight.duration')}" th:errors="*{flight.duration}" class="alert alert-danger" role="alert"></div>
+		</div>
+		<div class="form-group">
+			<label for="fligthFrom">Flight from</label>
+			<select th:field="*{airportFrom.title}" id="airportFrom" name="airportFrom">
+					<option th:each="airport : ${airportList}" th:value="${airport.title}" th:text="${airport.title}"></option>
+			</select>
+			<label for="flightTo">Flight to</label>
+			<select th:field="*{airportTo.title}" id="airportTo" name="airportTo">
+					<option th:each="airport : ${airportList}" th:value="${airport.title}" th:text="${airport.title}"></option>
+			</select>
+		</div>
+		<div class="form-group">
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</div>
 	</form>
+	<!-- Bootstrap Import -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>
