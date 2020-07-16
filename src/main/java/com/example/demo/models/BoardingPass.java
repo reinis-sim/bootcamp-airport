@@ -38,6 +38,8 @@ public class BoardingPass {
 	@Column(name="Seat")
 	private int seat;
 	
+	@Column(name="IsCheckedIn")
+	private boolean isCheckedIn;
 	
 	//LUGGAGE
 	@OneToMany(mappedBy="boardingPass")
@@ -52,6 +54,7 @@ public class BoardingPass {
 		this.flight = flight;
 		this.user = user;
 		this.seat = seat;
+		this.isCheckedIn = false;
 	}
 	
 	public BoardingPass(Flight flight, User user, int seat, Collection<Luggage> allLuggage) {
@@ -60,6 +63,7 @@ public class BoardingPass {
 		this.user = user;
 		this.seat = seat;
 		this.allLuggage = allLuggage;
+		this.isCheckedIn = false;
 	}
 	public Flight getFlight() {
 		return flight;
@@ -87,6 +91,12 @@ public class BoardingPass {
 	}
 	public int getIDBPass() {
 		return IDBPass;
+	}
+	public boolean isCheckedIn() {
+		return isCheckedIn;
+	}
+	public void setCheckedIn(boolean isCheckedIn) {
+		this.isCheckedIn = isCheckedIn;
 	}
 	@Override
 	public String toString() {

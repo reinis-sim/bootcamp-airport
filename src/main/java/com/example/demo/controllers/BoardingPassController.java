@@ -3,6 +3,9 @@ package com.example.demo.controllers;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,7 +19,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.demo.models.BoardingPass;
 import com.example.demo.models.Luggage;
 import com.example.demo.services.IBoardingPassService;
+import com.example.demo.services.IFlightService;
 import com.example.demo.services.ILuggageService;
+import com.example.demo.services.IUserService;
 import com.example.demo.services.impl.EmailServiceImpl;
 
 @Controller
@@ -31,6 +36,10 @@ public class BoardingPassController {
 	ILuggageService lugService;
 	@Autowired
 	EmailServiceImpl emailService;
+	@Autowired
+	IUserService userService;
+	@Autowired
+	IFlightService flightService;
 	
 	@GetMapping("/showAllBoardingPass") // url address->localhost:8080/boardingPass/showAllBoardingPass
 	public String getShowAllBoardingPass(Model model) {
@@ -141,4 +150,39 @@ public class BoardingPassController {
 		}
 		return "redirect:/";
 	}
+	@GetMapping("/{pass_id}/checkin")
+	public String getCheckInFlight(@PathVariable int pass_id, Model model) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if(!auth.isAuthenticated()) {
+			return "error2";
+		}
+        UserDetails userDetail = (UserDetails) auth.getPrincipal();
+        if(userService.authenticate(userDetail.getUsername(), userDetail.getPassword())) {
+        	try {
+				BoardingPass tempPass = bpService.selectOneBoardingPassById(pass_id);
+				
+				model.addAttribute("bpObject",tempPass);
+				model.addAttribute("innerObject",flightService.selectOneFlightByBoardingPass(tempPass));
+				return "flight-check-in";
+        	} catch (Exception e) {
+				System.out.println("Error checking in a flight:");
+				System.out.println(e.getMessage());
+			}
+        }
+		return "error";
+	}
+	@PostMapping("/{pass_id}/checkin")
+	public String postUpdateLuggage(@PathVariable int pass_id) {
+		try {
+			BoardingPass bpass = bpService.selectOneBoardingPassById(pass_id);
+			System.out.println(userService.userCheckIn(pass_id, bpass.getUser().getSurname()));
+			
+		} catch (Exception e) {
+			System.out.println("Error checking in:");
+			System.out.println(e.getMessage());
+			return "redirect:/boardingPass/"+pass_id+"/checkin";
+		}
+		return "redirect:/";
+	}
+	
 }

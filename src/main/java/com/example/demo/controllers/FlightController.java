@@ -23,6 +23,7 @@ import com.example.demo.models.Airport;
 import com.example.demo.models.Flight;
 import com.example.demo.models.Luggage;
 import com.example.demo.repos.IAirportRepo;
+import com.example.demo.repos.IBoardingPassRepo;
 import com.example.demo.repos.IUserRepo;
 import com.example.demo.services.IAirportService;
 import com.example.demo.services.IFlightService;
@@ -40,6 +41,8 @@ public class FlightController {
 	IUserService userService;
 	@Autowired
 	IUserRepo userRepo;
+	@Autowired
+	IBoardingPassRepo bpRepo;
 	@GetMapping("/showAll") // url - localhost:8080/flight/showAll
 	public String getShowAllFlights(Model model) {
 		
@@ -111,18 +114,14 @@ public class FlightController {
         UserDetails userDetail = (UserDetails) auth.getPrincipal();
         if(userService.authenticate(userDetail.getUsername(), userDetail.getPassword())) {
         	try {
-        		model.addAttribute("userDetails",userDetail);
 				model.addAttribute("innerObject",flightService.selectOneFlightById(flight_id));
-			} catch (Exception e) {
+				return "book-flight";
+        	} catch (Exception e) {
 				System.out.println("Error booking a flight:");
 				System.out.println(e.getMessage());
 			}
-        	return "book-flight";
-        	//TODO switch from using repo 
-        	
-        	//model.addAttribute("flights",userService.selectBookedFlightsByUser(userRepo.findByEmail(userDetail.getUsername())));
         }
-		return "hello-page";
+		return "error";
 	}
 	@PostMapping("/{flight_id}/book")
 	public String postBookFlight(@PathVariable int flight_id, @Valid Luggage luggage) {
@@ -139,5 +138,4 @@ public class FlightController {
 		}
 		return "redirect:/";
 	}
-
 }

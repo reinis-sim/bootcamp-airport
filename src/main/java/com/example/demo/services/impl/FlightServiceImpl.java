@@ -1,6 +1,7 @@
 package com.example.demo.services.impl;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -76,6 +77,16 @@ public class FlightServiceImpl implements IFlightService {
 			}
 		}
 		return false;
+	}
+
+	@Override
+	public Flight selectOneFlightByBoardingPass(BoardingPass boardingPass) throws Exception {
+		for(Flight f: flightRepo.findAll()) {
+			if(f.getBoardingPasses().contains(boardingPass)) {
+				return f;
+			}
+		}
+		return null;
 	}
 
 

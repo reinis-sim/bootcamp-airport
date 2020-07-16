@@ -127,6 +127,21 @@ public class UserServiceImpl implements IUserService {
 		return userRepo.findByEmail(email);
 	}
 
+	@Override
+	public boolean userCheckIn(int BP_ID, String surname) {
+		if(BP_ID > 0) {
+			if(boardingRepo.existsById(BP_ID)) {
+				if(boardingRepo.findById(BP_ID).get().getUser().getSurname().equals(surname)) {
+					BoardingPass tempPass = boardingRepo.findById(BP_ID).get();
+					tempPass.setCheckedIn(true);
+					boardingRepo.save(tempPass);
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
 	
 
 }
