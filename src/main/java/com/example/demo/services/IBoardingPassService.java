@@ -23,5 +23,8 @@ public interface IBoardingPassService {
 	//save testing data
 	void saveTestingData();
 	
+	//delete
+	boolean deleteBoardingPassById(int id);
+	
 	
 }

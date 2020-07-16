@@ -107,6 +107,11 @@ public class UserServiceImpl implements IUserService {
 		return flightRepo.findByBoardingPasses(boardingPass);
 	}
 
+	@Override
+	public User selectOneUserByEmail(String email) {
+		return userRepo.findByEmail(email);
+	}
+
 	
 
 }

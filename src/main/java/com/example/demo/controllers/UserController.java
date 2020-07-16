@@ -1,8 +1,11 @@
 package com.example.demo.controllers;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -14,7 +17,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.models.User;
-import com.example.demo.repos.IFlightRepo;
 import com.example.demo.repos.IUserRepo;
 import com.example.demo.services.IUserService;
 
@@ -31,15 +33,48 @@ public class UserController {
 		return "user-register";
 	}
 	@PostMapping("/register")
-	public String register(@ModelAttribute User user, BindingResult result) {
+	public String register(@ModelAttribute @Valid User user, BindingResult result) {
 		if(result.hasErrors()) {
 			return "user-register";
 		}
-		userService.register(user.getName(), user.getSurname(), user.getEmail(), user.getPassword());
+		try {
+			userService.register(user.getName(), user.getSurname(), user.getEmail(), user.getPassword());
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return "user-register";
+		}
+		return "redirect:/";
+	}
+	@GetMapping("/login")
+	public String login(User user) {
+		return "login";
+	}
+	
+	@PostMapping("/login")
+	public String login(HttpServletRequest http,@Valid User user, BindingResult result) {
+		if(result.hasErrors()) {
+			return "login";
+		}
+		try {
+			http.login(user.getEmail(), user.getPassword());
+		} catch (ServletException e) {
+			System.out.println(e.getMessage());
+			return "login";
+		}
 		return "redirect:/";
 	}
 	
-	//@GetMapping("/login")
+	@GetMapping("/logout")
+	public String logout(HttpServletRequest http) {
+		SecurityContextHolder.clearContext();
+		try {
+			http.logout();
+		} catch (ServletException e) {
+			e.printStackTrace();
+		}
+		return "redirect:/";
+	}
+	
 	/*
 	@GetMapping("/book")
 	public String bookFlight() {

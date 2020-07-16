@@ -24,7 +24,7 @@ public class BoardingPass {
 	
 	//FLIGHT
 	@ManyToOne
-	@JoinColumn(name = "ID_Flight")
+	@JoinColumn(name = "IDFlight")
 	private Flight flight;
 	
 	

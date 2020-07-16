@@ -10,18 +10,22 @@
 		<div class="form-group">
 			<label for="name">Name</label>
 			<input  th:field="*{name}" placeholder="Name" type="text" id="name"  class="form-control">
+			<div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="alert alert-danger" role="alert"></div>
 		</div>
 		<div class="form-group">
 			<label for="name">Surname</label>
 			<input  th:field="*{surname}" placeholder="Surname" type="text" id="surname"  class="form-control">
+			<div th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}" class="alert alert-danger" role="alert"></div>
 		</div>
 		<div class="form-group">
 			<label for="name">Email</label>
 			<input  th:field="*{email}" placeholder="your@email.com" type="text" id="email"  class="form-control">
+			<div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="alert alert-danger" role="alert"></div>
 		</div>
 		<div class="form-group">
 			<label for="name">Password</label>
 			<input  th:field="*{password}" placeholder="Password" type="password" id="password"  class="form-control">
+			<div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="alert alert-danger" role="alert"></div>
 		</div>
 		<div class="form-group">
 			<button type="submit" class="btn btn-primary">Submit</button>

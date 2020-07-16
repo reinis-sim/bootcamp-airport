@@ -81,7 +81,6 @@ public class Flight {
 		this.duration = duration;
 		this.airports = airports;
 		this.maxNumberOfPassangers = maxNumberOfPassangers;
-		
 	}
 
 
