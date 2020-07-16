@@ -60,6 +60,22 @@ public class BoardingPassController {
 			return "error";
 		}
 	}
+	@GetMapping("/deleteBoardingPass/{id}")
+	public String getDeleteProductById(@PathVariable(name = "id") int id, Model model)
+	{
+		try
+		{
+			
+			bpService.deleteBoardingPassById(id);
+			
+			model.addAttribute("innerObject", bpService.selectAllBoardingPasses());
+			return "show-all-boarding-pass";// show-all-products-page.html
+		}
+		catch (Exception e) {
+			return "error";
+		}
+		
+}
 	@GetMapping("/{pass_id}/newLuggage")
 	public String getAddNewLuggage(@PathVariable("pass_id") int pass_id, Luggage luggage) {
 		return "create-luggage";
@@ -123,6 +139,6 @@ public class BoardingPassController {
 			System.out.println(e.getMessage());
 			return "error";
 		}
-		return "show";
+		return "redirect:/";
 	}
 }

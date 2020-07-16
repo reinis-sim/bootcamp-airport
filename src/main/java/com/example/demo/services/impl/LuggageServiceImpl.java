@@ -88,7 +88,6 @@ public class LuggageServiceImpl implements ILuggageService {
 		}
 		return false;
 	}
-
 	
 
 }

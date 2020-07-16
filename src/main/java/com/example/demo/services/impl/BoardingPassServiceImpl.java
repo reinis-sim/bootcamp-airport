@@ -12,6 +12,7 @@ import com.example.demo.models.Luggage;
 import com.example.demo.models.User;
 import com.example.demo.repos.IBoardingPassRepo;
 import com.example.demo.repos.IFlightRepo;
+import com.example.demo.repos.ILuggageRepo;
 import com.example.demo.repos.IUserRepo;
 import com.example.demo.services.IBoardingPassService;
 
@@ -24,6 +25,8 @@ public class BoardingPassServiceImpl implements IBoardingPassService{
 	IUserRepo userRepo;
 	@Autowired
 	IFlightRepo flRepo;
+	@Autowired
+	ILuggageRepo lugRepo;
 
 	@Override
 	public BoardingPass selectOneBoardingPassById(int id) throws Exception {
@@ -78,6 +81,24 @@ public class BoardingPassServiceImpl implements IBoardingPassService{
 		}
 		throw new Exception("Id is not correct and there is not customer with that id in System");
 		
+	}
+
+	@Override
+	public boolean deleteBoardingPassById(int id) {
+		if(id>0) {
+			if(bpRepo.existsById(id)) {
+			if(lugRepo.existsByBoardingPassIDBPass(id)) {
+				ArrayList<Luggage> luggageToRemove=lugRepo.findByBoardingPassIDBPass(id);
+				lugRepo.deleteAll(luggageToRemove);
+			}
+		
+			
+				bpRepo.deleteById(id);
+				return true;
+			}
+			
+		}
+		return false;
 	}
 	
 }
