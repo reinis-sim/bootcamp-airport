@@ -70,7 +70,6 @@ public class LocationServiceImpl implements ILocationService {
 				Location locToUpdate = locationRepo.findById(id).get();
 				locToUpdate.setCity(location.getCity());
 				locToUpdate.setCountry(location.getCountry());
-				//TODO set also new type
 				locationRepo.save(locToUpdate);
 				return true;
 			}

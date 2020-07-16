@@ -118,8 +118,7 @@ public class Location {
 
 	@Override
 	public String toString() {
-		return "Location [ID_Location=" + ID_Location + ", city=" + city + ", country=" + country + ", airport="
-				+ airport + "]";
+		return "Location [ID_Location=" + ID_Location + ", city=" + city + ", country=" + country +   "]";
 	}
 	
 	

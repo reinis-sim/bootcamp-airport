@@ -12,7 +12,7 @@
                         
                         <tr> 
                                 <td>Please insert city </td>
-                                <td> <input type="text" th:field="*{location.city}" th:value="${location.city}"> </td>
+                                <td> <input type="text" th:field="*{location.city}" > </td>
                                 <td th:if="${#fields.hasErrors('location.city')}" th:errors="*{location.city}"> </td>
                         </tr>
                         
