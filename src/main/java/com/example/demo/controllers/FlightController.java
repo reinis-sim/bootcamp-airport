@@ -87,5 +87,11 @@ public class FlightController {
 		}
 	}
 	
+	@GetMapping("/{id}/delete")
+	public String deleteFlight(@PathVariable int id) {
+		flightService.deleteFlightById(id);
+		return "redirect:/flight/showAll";
+	}
+	
 
 }

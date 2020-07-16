@@ -1,13 +1,30 @@
-<html xmlns:th="http://www.thymeleaf.org" >
-	<body>
-	<p>Flight</p>
-	<p th:text="${innerObject.getDuration()}"></p>
-	
-
- 
-
-	
-	
-	</body>
-
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></head>
+<body>
+	<!-- NAV BAR -->
+	<div th:insert="fragments/nav-bar.html" :: header></div>  
+	<!-- Additional Data Here -->
+	<div class="card">
+		<div class="card-header">
+		FLIGHT
+		</div>
+		<div class="card-body">
+			<p th:text="'FROM: '+${innerObject.airports.stream().findFirst().get().getTitle()}" class="card-title">from</p>
+			<p th:text="'TO: '+${innerObject.airports.stream().skip(1).findFirst().get().getTitle()}" class="card-title">to</p>
+			<p th:text="'DURATION: '+${innerObject.duration}" class="card-text"></p>
+			<p th:text="'DEPARTING: '+${innerObject.time}" class="card-text"></p>
+			<p class="card-text">BOARDING PASSES:</p>
+			<ul>
+				<li th:each="bpass : ${innerObject.boardingPasses}" th:text="'ID: '+${bpass.IDBPass}+' Seat:'+${bpass.seat}"></li>
+			</ul>
+			<a th:href="@{'/flight/'+${innerObject.IDFlight}+'/delete'}" class="btn btn-danger">Delete Flight</a>
+		</div>
+	</div>
+	<!-- Bootstrap Import -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
 </html>
