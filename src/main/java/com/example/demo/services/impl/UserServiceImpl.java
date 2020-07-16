@@ -61,13 +61,19 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public boolean bookFlight(User user, Flight flight, ArrayList<Luggage>allLuggage) {
 		if(!boardingRepo.existsByUserAndFlight(user, flight)) {
-			//TODO create seat logic ------------------------------------↓
-			BoardingPass boardingPass = new BoardingPass(flight,user,flight.getBoardingPasses().size()+1);
+			int seat = 1;
+			if(!(flight.getBoardingPasses().isEmpty())) {
+				seat = flight.getBoardingPasses().size()+1;
+			}
+			//TODO create seat logic
+			BoardingPass boardingPass = new BoardingPass(flight,user,seat);
 			boardingRepo.save(boardingPass);
 			luggRepo.saveAll(allLuggage);
-			for(Luggage luggage : allLuggage) {
-				//price weight bp
-				luggRepo.save(new Luggage(luggage.getPrice(),luggage.getWeight(),boardingPass));
+			if(!allLuggage.equals(null)) {
+				for(Luggage luggage : allLuggage) {
+					//price weight bp
+					luggRepo.save(new Luggage(luggage.getPrice(),luggage.getWeight(),boardingPass));
+				}
 			}
 			return true;
 		}else {
