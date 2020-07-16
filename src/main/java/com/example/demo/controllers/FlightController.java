@@ -86,10 +86,6 @@ public class FlightController {
 			System.out.println(e.getMessage());
 			return "insert-flight-page";
 		}
-		//System.out.println(toAirp);
-		
-		
-		
 	}
 	
 
