@@ -5,7 +5,7 @@
 <body>
     <header th:fragment="nav-bar">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="/">title</a>
+  <a class="navbar-brand" href="/">My Airport</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -27,8 +27,6 @@
         	</a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           	<a class="dropdown-item" href="/boardingPass/showAllBoardingPass">Show All</a>
-          	<a class="dropdown-item" href="/boardingPass/showOneBoardingPass/">Show One</a>
-          	<a class="dropdown-item" href="/boardingPass/showFlightBoardingPass/">Show Flight Boarding Pass</a>
         </div>
       	</li>
       	<li class="nav-item dropdown">
@@ -37,6 +35,7 @@
         	</a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           	<a class="dropdown-item" href="/flight/showAll">Show All</a>
+          	<a sec:authorize="hasRole('ADMIN')" class="dropdown-item" href="/flight/insert">Insert flight</a>
         </div>
       	</li>
       	<li sec:authorize="hasRole('ADMIN')" class="nav-item dropdown">
@@ -45,9 +44,7 @@
         	</a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           	<a class="dropdown-item" href="/location/showAll">Show All</a>
-          	<a class="dropdown-item" href="/location/insert">Insert Location</a>
-          	<a class="dropdown-item" href="/location/showAll/">Show One</a>
-          	<a class="dropdown-item" href="/location/delete/">Delete</a>
+          	<a sec:authorize="hasRole('ADMIN')" class="dropdown-item" href="/location/insert">Insert Location</a>
         </div>
       	</li>
       	<li sec:authorize="isAuthenticated()" class="nav-item dropdown">

@@ -132,10 +132,11 @@ public class UserServiceImpl implements IUserService {
 		if(BP_ID > 0) {
 			if(boardingRepo.existsById(BP_ID)) {
 				User user = boardingRepo.findById(BP_ID).get().getUser();
+				Flight flight = boardingRepo.findById(BP_ID).get().getFlight();
 				if(boardingRepo.findById(BP_ID).get().getUser().getSurname().equals(surname)) {
 					BoardingPass tempPass = boardingRepo.findById(BP_ID).get();
 					tempPass.setCheckedIn(true);
-					user.setExtraPoints(100); //TODO set according to price
+					user.setExtraPoints(flight.getPrice()*0.5f);
 					userRepo.save(user);
 					boardingRepo.save(tempPass);
 					return true;
