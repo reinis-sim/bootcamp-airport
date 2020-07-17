@@ -15,12 +15,12 @@
 			<p th:text="'TO: '+${flights.airports.stream().skip(1).findFirst().get().getTitle()}" class="card-title">to</p>
 			<p th:text="'DURATION: '+${flights.duration}" class="card-text"></p>
 			<p th:text="'DEPARTING: '+${flights.time}" class="card-text"></p>
-			<p class="card-text">BOARDING PASSES:</p>
-			<ul>
+			<p sec:authorize="hasRole('ADMIN')" class="card-text">BOARDING PASSES:</p>
+			<ul sec:authorize="hasRole('ADMIN')">
 				<li th:each="bpass : ${flights.boardingPasses}" th:text="'ID: '+${bpass.IDBPass}+' Seat:'+${bpass.seat}"></li>
 			</ul>
-			<a th:href="@{'/flight/'+${flights.IDFlight}+'/delete'}" class="btn btn-danger">Delete Flight</a>
-			<a th:href="@{'/flight/'+${flights.IDFlight}+'/book'}" class="btn btn-success">Book Flight</a>
+			<a sec:authorize="hasRole('ADMIN')" th:href="@{'/flight/'+${flights.IDFlight}+'/delete'}" class="btn btn-danger">Delete Flight</a>
+			<a sec:authorize="hasAnyRole('USER','ADMIN')" th:href="@{'/flight/'+${flights.IDFlight}+'/book'}" class="btn btn-success">Book Flight</a>
 		</div>
 	</div>
 	<!-- Bootstrap Import -->

@@ -13,6 +13,7 @@ public interface ILuggageService {
 	Luggage selectOneLuggageById(int id) throws Exception;
 	ArrayList<Luggage> selectAllLuggage();
 	ArrayList<Luggage> selectAllLuggageByBoardingPass(int id) throws Exception;
+	ArrayList<Luggage> selectAllLuggageByUser(User user) throws Exception;
 	
 	//create
 	boolean insertNewLuggage(float price, float weight, BoardingPass boardingPass);

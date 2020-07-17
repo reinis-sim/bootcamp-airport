@@ -8,8 +8,10 @@ import org.springframework.stereotype.Service;
 import com.example.demo.models.BoardingPass;
 import com.example.demo.models.Flight;
 import com.example.demo.models.Luggage;
+import com.example.demo.models.User;
 import com.example.demo.repos.IBoardingPassRepo;
 import com.example.demo.repos.ILuggageRepo;
+import com.example.demo.repos.IUserRepo;
 import com.example.demo.services.ILuggageService;
 
 @Service
@@ -18,6 +20,8 @@ public class LuggageServiceImpl implements ILuggageService {
 	ILuggageRepo lugRepo;
 	@Autowired
 	IBoardingPassRepo bpRepo;
+	@Autowired
+	IUserRepo userRepo;
 
 	@Override
 	public Luggage selectOneLuggageById(int id) throws Exception {
@@ -87,6 +91,15 @@ public class LuggageServiceImpl implements ILuggageService {
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public ArrayList<Luggage> selectAllLuggageByUser(User user) throws Exception {
+		ArrayList<Luggage> allLuggage = new ArrayList<>();
+		for(BoardingPass pass : bpRepo.findAllByUser(user)) {
+			allLuggage.addAll(lugRepo.findByBoardingPassIDBPass(pass.getIDBPass()));
+		}
+		return allLuggage;
 	}
 	
 

@@ -8,20 +8,14 @@
 	<!-- Additional Data Here -->
 	<div class="card">
 		<div class="card-header">
-		BOARDING PASS
+		USER
 		</div>
 		<div class="card-body">
-			<h5 th:text="'NAME: '+${innerObject.user.name}+' '+${innerObject.user.surname} " class="card-title">Name</h5>
-			<p th:text="'EMAIL: '+${innerObject.user.email}" class="card-title">email</p>
-			<p th:text="'SEAT: '+${innerObject.seat}" class="card-text"></p>
-			<p th:text="'PASS: '+${innerObject.IDBPass}" class="card-text"></p>
-			<p class="card-text">LUGGAGE:</p>
-			<ul>
-				<li th:each="luggage : ${innerObject.allLuggage}" th:text="${luggage}"></li>
-			</ul>
-			<a sec:authorize="hasRole('ADMIN')" th:href="@{'/boardingPass/deleteBoardingPass/'+${innerObject.IDBPass}}" class="btn btn-danger">Delete Boarding Pass</a>
-			<a sec:authorize="hasAnyRole('USER','ADMIN')" th:href="@{'/boardingPass/showOneBoardingPass/'+${innerObject.IDBPass}+'/email'}" class="btn btn-primary">Send PDF to email</a>
-			<a sec:authorize="hasAnyRole('USER','ADMIN')" th:href="@{'/boardingPass/'+${innerObject.IDBPass}+'/checkin'}" class="btn btn-primary">Check in</a>
+			<p th:text="'NAME: '+${userObject.name}" class="card-title">from</p>
+			<p th:text="'SURNAME: '+${userObject.surname}" class="card-title">to</p>
+			<p th:text="'EMAIL: '+${userObject.email}" class="card-text"></p>
+			<p th:text="'POINTS: '+${userObject.extraPoints}" class="card-text"></p>
+			<!-- <a sec:authorize="hasAnyRole('USER','ADMIN')" th:href="@{'/flight/'+${flights.IDFlight}+'/book'}" class="btn btn-success">Become VIP</a> -->
 		</div>
 	</div>
 	<!-- Bootstrap Import -->

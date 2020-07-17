@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.models.BoardingPass;
 import com.example.demo.models.Luggage;
+import com.example.demo.models.User;
 import com.example.demo.services.IBoardingPassService;
 import com.example.demo.services.IFlightService;
 import com.example.demo.services.ILuggageService;
@@ -43,8 +44,22 @@ public class BoardingPassController {
 	
 	@GetMapping("/showAllBoardingPass") // url address->localhost:8080/boardingPass/showAllBoardingPass
 	public String getShowAllBoardingPass(Model model) {
-		
-		model.addAttribute("innerObject", bpService.selectAllBoardingPasses());
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if(auth.getAuthorities().stream().anyMatch(r->r.getAuthority().equals("ROLE_USER"))) {
+        	 UserDetails userDetail = (UserDetails) auth.getPrincipal();
+        	 if(userService.authenticate(userDetail.getUsername(), userDetail.getPassword())) {
+        		 User user = userService.selectOneUserByEmail(userDetail.getUsername());
+        		 try {
+					model.addAttribute("innerObject",bpService.selectAllBoardingPassesByUserID(user));
+				} catch (Exception e) {
+					System.out.println("Error retrieving boarding passes");
+					System.out.println(e.getMessage());
+				}
+             }
+        	
+        }else {
+        	model.addAttribute("innerObject", bpService.selectAllBoardingPasses());
+        }
 		return "show-all-boarding-pass";
 	}
 	@GetMapping("/showOneBoardingPass/{id}")  

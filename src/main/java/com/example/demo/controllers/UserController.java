@@ -102,6 +102,17 @@ public class UserController {
 		//model.addAttribute("fligths",userService.selectOneBookedFlightByUser(boardingPass);
 		return "error";
 	}
+	@GetMapping("/profile")
+	public String selectUserProfile(Model model) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        UserDetails userDetail = (UserDetails) auth.getPrincipal();
+        if(userService.authenticate(userDetail.getUsername(), userDetail.getPassword())) {
+        	//TODO switch from using repo 
+        	model.addAttribute("userObject",userService.selectOneUserByEmail(userDetail.getUsername()));
+        	return "user-profile";
+        }
+		return "error2";
+	}
 	
 	
 }

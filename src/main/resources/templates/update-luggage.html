@@ -6,7 +6,7 @@
 	<!-- NAV BAR -->
 	<div th:insert="fragments/nav-bar.html" :: header></div>  
 	<!-- Additional Data Here -->
-	<form action="#" th:action="@{/boardingPass/__${pass_id}__/__${lugg_id}__/update}" modelAttribute="luggage" th:object="${luggage}" method="post">
+	<form action="#" th:action="@{/luggage/showOneLuggage/__${id}__/update}" modelAttribute="luggage" th:object="${luggage}" method="post">
 		<div class="form-group">
 			<label for="weight">Weight</label>
 			<input  th:field="*{weight}" placeholder="Weight (kg)" type="text" id="weight"  class="form-control">
