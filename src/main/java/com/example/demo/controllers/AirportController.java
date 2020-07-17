@@ -77,7 +77,7 @@ public class AirportController {
 			
 			//model.addAttribute("innerObject", airportService.showAllAirports());
 			//return "show-all-airports-page";// show-all-airports-page.html
-			return "redirect:/getShowAllAirports";
+			return "redirect:/airport/showAll";
 		}
 		catch (Exception e) {
 			System.out.println(e.getMessage());

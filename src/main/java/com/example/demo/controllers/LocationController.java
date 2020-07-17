@@ -85,6 +85,24 @@ public class LocationController {
 			return "error";
 		}
 	}
+	@GetMapping("/update/{id}")
+	public String getUpdateLocation(@PathVariable int id,Model model) {
+		try {
+			model.addAttribute("innerObject",locationService.selectOneLocationById(id));
+		} catch (Exception e) {
+			System.out.println("Error updating location");
+			System.out.println(e.getMessage());
+		}
+		return "update-location";
+	}
+	@PostMapping("/update/{id}")
+	public String postUpdateLocation(@PathVariable int id,@Valid Location location, BindingResult result) {
+		if(result.hasErrors()) {
+			return "update-location";
+		}
+		locationService.updateLocationById(id, location.getCity(), location.getCountry());
+		return "redirect:/location/showAll";
+	}
 	
 	
 

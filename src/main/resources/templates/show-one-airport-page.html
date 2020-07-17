@@ -25,6 +25,8 @@
                                </tr>
                        </tbody>
             </table>
+            <a  th:href="@{'/airport/delete/'+${innerObject.getIDAirport()}}" class="btn btn-danger">Delete</a>
+            <a  th:href="@{'/airport/update/'+${innerObject.getIDAirport()}}" class="btn btn-primary">Update</a>
     </div>
         
         <!-- Bootstrap Import -->
