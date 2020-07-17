@@ -47,7 +47,7 @@ public class FlightController {
 		try
 		{
 			model.addAttribute("flights", flightService.selectOneFlightById(id));
-			Model passNum = model.addAttribute("passNum", bpService.selectAllBoardingPassesByFlightID(id).size());
+			model.addAttribute("passNum", bpService.selectAllBoardingPassesByFlightID(id).size());
 			return "show-one-flight-page";// show-one-flight-page.html
 			
 		}

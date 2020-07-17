@@ -19,5 +19,6 @@ public interface IBoardingPassRepo extends CrudRepository<BoardingPass, Integer>
 	boolean existsByFlightIDFlight(int id);
 
 	ArrayList<BoardingPass> findByFlightIDFlight(int id);
+	ArrayList<BoardingPass> findAllByUser(User user);
 
 }

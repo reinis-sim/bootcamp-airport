@@ -10,4 +10,6 @@ public interface ILocationRepo extends CrudRepository<Location, Integer> {
 
 	Location findByCityAndCountry(String string, String country);
 
+	Location findByCity(String city);
+
 }

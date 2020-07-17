@@ -101,5 +101,10 @@ public class BoardingPassServiceImpl implements IBoardingPassService{
 		return false;
 	}
 
+	@Override
+	public ArrayList<BoardingPass> selectAllBoardingPassesByUserID(User user) throws Exception {
+		return bpRepo.findAllByUser(user);
+	}
+
 	
 }

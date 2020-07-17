@@ -31,6 +31,8 @@ public class User {
 	@Size(min = 5, message = "Password must be atleast 5 characters long")
 	@Column(name="Password")
 	private String password;
+	@Column(name="ExtraPoints")
+	private int extraPoints;
 	
 	@Column(name="Roles")
 	private String roles;
@@ -81,6 +83,12 @@ public class User {
 	public void setEnabled(boolean isEnabled) {
 		this.isEnabled = isEnabled;
 	}
+	public int getExtraPoints() {
+		return extraPoints;
+	}
+	public void setExtraPoints(int extraPoints) {
+		this.extraPoints = extraPoints;
+	}
 	public User() {
 		
 	}
@@ -92,6 +100,7 @@ public class User {
 		this.password = password;
 		this.roles = roles;
 		this.isEnabled = isEnabled;
+		this.extraPoints = 0;
 }
 	
 	@Override

@@ -26,7 +26,7 @@
 	       			<td scope="col" th:text="${bPass.flight.airports.stream().findFirst().get().getTitle()}"></td>
 	       			<td scope="col" th:text="${bPass.flight.airports.stream().skip(1).findFirst().get().getTitle()}"></td>
 	       			<td scope="col" th:text="${bPass.flight.time}"></td>
-	       			<td><a scope="col" th:href="@{'showOneBoardingPass/'+${bPass.IDBPass}}">Open</a></td>
+	       			<td><a scope="col" th:href="@{'/boardingPass/showOneBoardingPass/'+${bPass.IDBPass}}">Open</a></td>
 	       		
 	       		</tr>
        		</tbody>
