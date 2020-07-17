@@ -20,6 +20,7 @@ import com.example.demo.models.Airport;
 import com.example.demo.models.Flight;
 import com.example.demo.repos.IAirportRepo;
 import com.example.demo.services.IAirportService;
+import com.example.demo.services.IBoardingPassService;
 import com.example.demo.services.IFlightService;
 
 @Controller
@@ -28,6 +29,8 @@ public class FlightController {
 	
 	@Autowired
 	IFlightService flightService;
+	@Autowired
+	IBoardingPassService bpService;
 	@Autowired
 	IAirportService airportService;
 	
@@ -44,6 +47,7 @@ public class FlightController {
 		try
 		{
 			model.addAttribute("flights", flightService.selectOneFlightById(id));
+			Model passNum = model.addAttribute("passNum", bpService.selectAllBoardingPassesByFlightID(id).size());
 			return "show-one-flight-page";// show-one-flight-page.html
 			
 		}
