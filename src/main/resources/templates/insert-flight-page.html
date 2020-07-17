@@ -18,6 +18,11 @@
 			<div th:if="${#fields.hasErrors('flight.duration')}" th:errors="*{flight.duration}" class="alert alert-danger" role="alert"></div>
 		</div>
 		<div class="form-group">
+			<label for="duration">Price</label>
+			<input  th:field="*{flight.price}" placeholder="Price" type="text" id="price"  class="form-control">
+			<div th:if="${#fields.hasErrors('flight.price')}" th:errors="*{flight.price}" class="alert alert-danger" role="alert"></div>
+		</div>
+		<div class="form-group">
 			<label for="fligthFrom">Flight from</label>
 			<select th:field="*{airportFrom.title}" id="airportFrom" name="airportFrom">
 					<option th:each="airport : ${airportList}" th:value="${airport.title}" th:text="${airport.title}"></option>
