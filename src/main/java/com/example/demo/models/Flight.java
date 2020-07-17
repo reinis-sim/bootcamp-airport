@@ -52,6 +52,8 @@ public class Flight {
 	@Column(name = "Duration")
 	private float duration;
 	
+	@Column(name="Price")
+	private float price;
 
 	@ManyToMany
 	@JoinTable(name="Airport_Flight",
@@ -74,11 +76,12 @@ public class Flight {
 		
 	}
 
-	public Flight(float time, @Min(0) @Max(1000) float duration, Collection<Airport> airports,
+	public Flight(float time, @Min(0) @Max(1000) float duration,float price, Collection<Airport> airports,
 			@Min(0) @Max(1000) int maxNumberOfPassangers /*, Collection<BoardingPass> boardingPasses*/) {
 		super();
 		this.time = time;
 		this.duration = duration;
+		this.price = price;
 		this.airports = airports;
 		this.maxNumberOfPassangers = maxNumberOfPassangers;
 	}
@@ -150,6 +153,14 @@ public class Flight {
 
 
 
+
+	public float getPrice() {
+		return price;
+	}
+
+	public void setPrice(float price) {
+		this.price = price;
+	}
 
 	public int getIDFlight() {
 		return IDFlight;

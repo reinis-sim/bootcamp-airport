@@ -88,9 +88,9 @@ public class AirportTestingController {
 		    ArrayList<Airport> permAir = new ArrayList<Airport>();
 	        permAir.add(a1);
 	        permAir.add(a2);
-			Flight f1 = new Flight(9.00f, 2.00f, permAir, 150);
-			Flight f2 = new Flight(12.00f, 1.40f, air, 100);
-			Flight f3 = new Flight(20.00f, 5.20f, air2, 300);
+			Flight f1 = new Flight(9.00f, 2.00f,300f, permAir, 150);
+			Flight f2 = new Flight(12.00f, 1.40f,250f, air, 100);
+			Flight f3 = new Flight(20.00f, 5.20f,320f, air2, 300);
 			flightRepo.save(f1);
 			flightRepo.save(f2);
 			flightRepo.save(f3);

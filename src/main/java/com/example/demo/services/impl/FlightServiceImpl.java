@@ -111,7 +111,8 @@ public class FlightServiceImpl implements IFlightService {
 				Flight flightToUpdate = flightRepo.findById(id).get();
 				flightToUpdate.setTime(flight.getTime());
 				flightToUpdate.setDuration(flight.getDuration());
-				
+				flightToUpdate.setPrice(flight.getPrice());
+				flightToUpdate.setMaxNumberOfPassangers(flight.getMaxNumberOfPassangers());
 				String[] testing = airportFrom.getTitle().split(",");
 				
 				Airport a1 = airportRepo.findByTitle(testing[0]);

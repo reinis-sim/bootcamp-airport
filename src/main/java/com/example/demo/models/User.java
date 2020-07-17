@@ -32,7 +32,7 @@ public class User {
 	@Column(name="Password")
 	private String password;
 	@Column(name="ExtraPoints")
-	private int extraPoints;
+	private float extraPoints;
 	
 	@Column(name="Roles")
 	private String roles;
@@ -83,10 +83,10 @@ public class User {
 	public void setEnabled(boolean isEnabled) {
 		this.isEnabled = isEnabled;
 	}
-	public int getExtraPoints() {
+	public float getExtraPoints() {
 		return extraPoints;
 	}
-	public void setExtraPoints(int extraPoints) {
+	public void setExtraPoints(float extraPoints) {
 		this.extraPoints = extraPoints;
 	}
 	public User() {

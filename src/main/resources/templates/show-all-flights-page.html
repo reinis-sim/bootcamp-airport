@@ -15,6 +15,7 @@
                                        <th scope="col">Flight To</th>
                                        <th scope="col">Estimated duration</th>
                                        <th scope="col">Departing time</th>
+                                       <th scope="col">Price</th>
                                        <th scope="col"></th>
                                </tr>
                        </thead>
@@ -24,6 +25,7 @@
                                        <td scope="col" th:text="${flight.airports.stream().skip(1).findFirst().get().getTitle()}"></td>
                                        <td scope="col" th:text="${flight.duration}"></td>
                                        <td scope="col" th:text="${flight.time}"></td>
+                                       <td scope="col" th:text="${flight.price}"></td>
                                        <td><a scope="col" th:href="@{'/flight/showAll/'+${flight.IDFlight}}">Open</a></td>
                                </tr>
                        </tbody>

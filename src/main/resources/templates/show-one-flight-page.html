@@ -16,6 +16,7 @@
 			<p th:text="'TO: '+${flights.airports.stream().skip(1).findFirst().get().getTitle()}" class="card-title">to</p>
 			<p th:text="'DURATION: '+${flights.duration}" class="card-text"></p>
 			<p th:text="'DEPARTING: '+${flights.time}" class="card-text"></p>
+			<p th:text="'PRICE: '+${flights.price}" class="card-text"></p>
 			<p sec:authorize="hasRole('ADMIN')" class="card-text">BOARDING PASSES:</p>
 			<ul sec:authorize="hasRole('ADMIN')">
 				<li th:each="bpass : ${flights.boardingPasses}" th:text="'ID: '+${bpass.IDBPass}+' Seat:'+${bpass.seat}"></li>
