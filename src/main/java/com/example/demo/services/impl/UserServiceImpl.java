@@ -68,7 +68,7 @@ public class UserServiceImpl implements IUserService {
 			//TODO create seat logic
 			BoardingPass boardingPass = new BoardingPass(flight,user,seat);
 			boardingRepo.save(boardingPass);
-			luggRepo.saveAll(allLuggage);
+			//luggRepo.saveAll(allLuggage);
 			if(!allLuggage.equals(null)) {
 				for(Luggage luggage : allLuggage) {
 					//price weight bp
@@ -131,9 +131,12 @@ public class UserServiceImpl implements IUserService {
 	public boolean userCheckIn(int BP_ID, String surname) {
 		if(BP_ID > 0) {
 			if(boardingRepo.existsById(BP_ID)) {
+				User user = boardingRepo.findById(BP_ID).get().getUser();
 				if(boardingRepo.findById(BP_ID).get().getUser().getSurname().equals(surname)) {
 					BoardingPass tempPass = boardingRepo.findById(BP_ID).get();
 					tempPass.setCheckedIn(true);
+					user.setExtraPoints(100); //TODO set according to price
+					userRepo.save(user);
 					boardingRepo.save(tempPass);
 					return true;
 				}

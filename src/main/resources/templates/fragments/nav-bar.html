@@ -18,8 +18,7 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           	<a class="dropdown-item" href="/airport/showAll">Show All</a>
           	<a sec:authorize="hasRole('ADMIN')" class="dropdown-item" href="/airport/insert">Insert Airport</a>
-          	<a class="dropdown-item" href="/airport/showAll/">Show One</a>
-          	<a sec:authorize="hasRole('ADMIN')" class="dropdown-item" href="/airport/delete/">Delete</a>
+
         </div>
       	</li>
       	<li sec:authorize="hasRole('ADMIN')" class="nav-item dropdown">
@@ -57,29 +56,30 @@
         	</a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           	<a class="dropdown-item" href="/luggage/showAllLuggage">Show All</a>
-          	<a class="dropdown-item" href="/luggage/showOneLuggage/">Show One</a>
-          	<a class="dropdown-item" href="/luggage/showLuggageBoardingPass/">Show Boarding Pass</a>
         </div>
       	</li>
-      	<li class="nav-item dropdown">
+      	<li sec:authorize="isAuthenticated()" class="nav-item dropdown">
         	<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
          		User
         	</a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          	<a sec:authorize="isAuthenticated()" class="dropdown-item" href="/user/bookings">Show booked flights</a>
-          	<a class="dropdown-item" href="/user/allFlights">Show All Flights</a>
+          	<a class="dropdown-item" href="/user/bookings">Show My Booked Flights</a>
+          	<a class="dropdown-item" href="/boardingPass/showAllBoardingPass">Show My Boarding Passes</a>
+          	<a class="dropdown-item" href="/user/profile">Profile</a>
         </div>
       	</li>
-      	<li class="nav-item align-right">
-        	<a sec:authorize="isAnonymous()" class="nav-link" href="/user/register">Register</a>
-      	</li>
-      	<li class="nav-item align-right">
-        	<a sec:authorize="isAnonymous()" class="nav-link" href="/user/login">Login</a>
-      	</li>
-      	<li class="nav-item align-right">
-        	<a sec:authorize="isAuthenticated()" class="nav-link" href="/user/logout">Logout</a>
-      	</li>
-    </ul>
+    	</ul>
+     	<ul class="navbar-nav ml-auto">
+	      	<li class="nav-item ">
+	        	<a sec:authorize="isAnonymous()" class="nav-link" href="/user/register">Register</a>
+	      	</li>
+	      	<li class="nav-item ">
+	        	<a sec:authorize="isAnonymous()" class="nav-link" href="/user/login">Login</a>
+	      	</li>
+	      	<li class="nav-item ">
+	        	<a sec:authorize="isAuthenticated()" class="nav-link" href="/user/logout">Logout</a>
+	      	</li>
+   		</ul>
   </div>
 </nav>
     </header>

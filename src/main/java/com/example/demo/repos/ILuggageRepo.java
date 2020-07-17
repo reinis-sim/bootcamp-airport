@@ -18,7 +18,7 @@ public interface ILuggageRepo extends CrudRepository<Luggage, Integer> {
 	ArrayList<Luggage> findByBoardingPassIDBPass(int id);
 
 	void removeByBoardingPassIDBPass(int id);
-
+	
 	
 
 	

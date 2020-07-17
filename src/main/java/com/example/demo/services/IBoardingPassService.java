@@ -15,7 +15,7 @@ public interface IBoardingPassService {
 	BoardingPass selectOneBoardingPassById(int id) throws Exception;
 	ArrayList<BoardingPass> selectAllBoardingPasses();
 	ArrayList<BoardingPass> selectAllBoardingPassesByFlightID(int id) throws Exception;
-	
+	ArrayList<BoardingPass> selectAllBoardingPassesByUserID(User user) throws Exception;
 	//create
 	boolean insertNewBoardingPass(Flight flight, User user, int seat, Collection<Luggage> allLuggage);
 	boolean insertNewBoardingPassByObject(BoardingPass boardingPass);
@@ -25,6 +25,7 @@ public interface IBoardingPassService {
 	
 	//delete
 	boolean deleteBoardingPassById(int id);
+	
 	
 	
 }

@@ -2,12 +2,16 @@ package com.example.demo.controllers;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
 import com.example.demo.models.User;
 
 
-import org.springframework.stereotype.Controller; 
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.example.demo.models.Airport;
@@ -61,7 +65,7 @@ public class AirportTestingController {
 	
 	
 	@GetMapping("/")
-	String test() {
+	String test(Model model) {
 		if(!locationRepo.existsById(1)) {
 			Location l1 = new Location("Riga", "Latvia");
 			Location l2 = new Location("Berlin", "Germany");
@@ -126,6 +130,12 @@ public class AirportTestingController {
 			//myEmail.sendEmail("email@email.lv",bo1 );
 			
 		}
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if (!(authentication instanceof AnonymousAuthenticationToken)) {
+		    String email = authentication.getName();
+		    model.addAttribute("userObject",userService.selectOneUserByEmail(email));
+		}
+		
 			System.out.println("------");
 			
 		return "home";

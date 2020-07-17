@@ -27,6 +27,8 @@
 	</tr>
                        </tbody>
             </table>
+            <a  th:href="@{'/luggage/showOneLuggage/'+${innerObject.getID_Luggage()}+'/delete'}" class="btn btn-danger">Delete</a>
+            <a  th:href="@{'/luggage/showOneLuggage/'+${innerObject.getID_Luggage()}+'/update'}" class="btn btn-primary">Update</a>
     </div>
         
         <!-- Bootstrap Import -->

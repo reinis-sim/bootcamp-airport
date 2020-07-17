@@ -5,8 +5,11 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.models.Airport;
 import com.example.demo.models.Location;
+import com.example.demo.repos.IAirportRepo;
 import com.example.demo.repos.ILocationRepo;
+import com.example.demo.services.IAirportService;
 import com.example.demo.services.ILocationService;
 
 @Service
@@ -14,7 +17,10 @@ public class LocationServiceImpl implements ILocationService {
 
 	@Autowired
 	ILocationRepo locationRepo;
-	
+	@Autowired
+	IAirportRepo airportRepo;
+	@Autowired
+	IAirportService airportService;
 	
 	@Override
 	public boolean addLocation(String city, String country)	{
@@ -86,6 +92,10 @@ public class LocationServiceImpl implements ILocationService {
 		{
 			if(locationRepo.existsById(id))
 			{
+				;
+				for(Airport airport : locationRepo.findById(id).get().getAirport()) {
+					airportService.deleteAirportById(airport.getIDAirport());
+				}
 				locationRepo.deleteById(id);
 				return true;
 				

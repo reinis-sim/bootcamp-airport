@@ -26,6 +26,8 @@
                                </tr>
                        </tbody>
             </table>
+            <a  th:href="@{'/location/delete/'+${innerObject.getID_Location()}}" class="btn btn-danger">Delete</a>
+            <a  th:href="@{'/location/update/'+${innerObject.getID_Location()}}" class="btn btn-primary">Update</a>
     </div>
         
         <!-- Bootstrap Import -->

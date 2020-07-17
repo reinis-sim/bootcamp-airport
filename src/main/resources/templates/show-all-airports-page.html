@@ -18,15 +18,17 @@
                                        <th scope="col">Title</th>
                                        <th scope="col">City</th>
                                        <th scope="col">Country</th>
+                                       <th scope="col"></th>
                                </tr>
                        </thead>
                        <tbody>
-										<tr th:each="air: ${innerObject}">
-											<td scope="col" th:text="${air.getIDAirport()}"></td>
-											<td scope="col" th:text="${air.getTitle()}"></td>
-											<td scope="col" th:text="${air.getLocation().getCity()}"></td>
-											<td scope="col" th:text="${air.getLocation().getCountry()}"></td>
-                               </tr>
+                               <tr th:each="air: ${innerObject}">
+									<td th:text="${air.getIDAirport()}"></td>
+									<td th:text="${air.getTitle()}"></td>
+									<td th:text="${air.getLocation().getCity()}"></td>
+									<td th:text="${air.getLocation().getCountry()}"></td>
+									<td><a scope="col" th:href="@{'/airport/showAll/'+${air.getIDAirport()}}">Open</a></td>
+								</tr>
                        </tbody>
             </table>
 	
