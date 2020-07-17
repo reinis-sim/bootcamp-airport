@@ -4,6 +4,7 @@
 <head>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></head>
 <body>
+
 	<!-- NAV BAR -->
 	<div th:insert="fragments/nav-bar.html" :: header></div>  
 	<!-- Additional Data Here -->
@@ -16,6 +17,7 @@
 			<p th:text="'TO: '+${flights.airports.stream().skip(1).findFirst().get().getTitle()}" class="card-title">to</p>
 			<p th:text="'DURATION: '+${flights.duration}" class="card-text"></p>
 			<p th:text="'DEPARTING: '+${flights.time}" class="card-text"></p>
+			<p th:text="'NUMBER OF PASSENGERS '+${passNum}+'/'+${flights.getMaxNumberOfPassangers()}" class="card-text"></p>
 			<p sec:authorize="hasRole('ADMIN')" class="card-text">BOARDING PASSES:</p>
 			<ul sec:authorize="hasRole('ADMIN')">
 				<li th:each="bpass : ${flights.boardingPasses}" th:text="'ID: '+${bpass.IDBPass}+' Seat:'+${bpass.seat}"></li>
