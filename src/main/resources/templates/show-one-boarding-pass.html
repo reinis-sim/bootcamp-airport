@@ -19,7 +19,7 @@
 			<ul>
 				<li th:each="luggage : ${innerObject.allLuggage}" th:text="${luggage}"></li>
 			</ul>
-			<a sec:authorize="hasRole('ADMIN')" th:href="@{'/boardingPass/deleteBoardingPass/'+${innerObject.IDBPass}}" class="btn btn-danger">Delete Boarding Pass</a>
+			<a sec:authorize="hasRole('ADMIN')" th:href="@{'/boardingPass/deleteBoardingPass/'+${innerObject.IDBPass}}" class="btn btn-danger">Delete</a>
 			<a sec:authorize="hasAnyRole('USER','ADMIN')" th:href="@{'/boardingPass/showOneBoardingPass/'+${innerObject.IDBPass}+'/email'}" class="btn btn-primary">Send PDF to email</a>
 			<a sec:authorize="hasAnyRole('USER','ADMIN')" th:href="@{'/boardingPass/'+${innerObject.IDBPass}+'/checkin'}" class="btn btn-primary">Check in</a>
 		</div>
