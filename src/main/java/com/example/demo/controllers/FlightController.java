@@ -64,7 +64,9 @@ public class FlightController {
 			
 		}
 		catch (Exception e) {
+			e.printStackTrace();
 			return "error";
+		
 		}
 	}
 	

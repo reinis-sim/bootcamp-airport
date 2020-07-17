@@ -41,7 +41,12 @@ public class BoardingPassServiceImpl implements IBoardingPassService{
 
 	@Override
 	public ArrayList<BoardingPass> selectAllBoardingPasses() {
-		return (ArrayList<BoardingPass>) bpRepo.findAll();
+		
+		ArrayList<BoardingPass> bpFind= (ArrayList<BoardingPass>) bpRepo.findAll();
+		if(bpFind == null) {
+			return new ArrayList<BoardingPass>();
+		}
+		return bpFind;
 	}
 
 	@Override
@@ -77,6 +82,8 @@ public class BoardingPassServiceImpl implements IBoardingPassService{
 			if(bpRepo.existsByFlightIDFlight(id)) {
 			ArrayList<BoardingPass>flightBoardingPass = bpRepo.findByFlightIDFlight(id);
 			return flightBoardingPass;
+			}else {
+				return new ArrayList<BoardingPass>();
 			}
 		}
 		throw new Exception("Id is not correct and there is not customer with that id in System");
