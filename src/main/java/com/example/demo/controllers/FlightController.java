@@ -34,6 +34,7 @@ public class FlightController {
 	@GetMapping("/showAll") // url - localhost:8080/flight/showAll
 	public String getShowAllFlights(Model model) {
 		
+		System.out.println("testing" + flightService.showAllFlights().get(0).getAirports().stream().findFirst().get().getTitle());
 		model.addAttribute("flights", flightService.showAllFlights());
 		return "show-all-flights-page";// show-all-flights-page.html
 	}
@@ -104,4 +105,47 @@ public class FlightController {
 		}
 	}
 */
+	
+	
+	//TODO NOT WORKING
+	//update functionality
+	@GetMapping("/update/{id}")//url address->localhost:8080/airport/update/{id}
+	public String getUpdateFlightById(@PathVariable(name = "id") int id, Model model, Airport airportFrom, Airport airportTo) {
+	
+		try
+		{
+			Flight flight = flightService.selectOneFlightById(id);
+			
+			System.out.println(flight);
+			model.addAttribute("airportList", airportService.showAllAirports());
+			model.addAttribute("flight", flight);
+			model.addAttribute("airportTo", airportFrom);
+			model.addAttribute("airportFrom", airportTo);
+			return "update-one-flight-page";
+		}
+		catch (Exception e) {
+			return "error";
+		}
+		}
+	
+	
+	
+	@PostMapping("/update/{id}")
+	public String postUpdateFlightById(@PathVariable(name = "id") int id, Flight flight,@ModelAttribute("airportFrom")Airport airportFrom, 
+			@ModelAttribute("airportTo") Airport airportTo)
+	{
+
+		System.out.println(airportFrom + " " + airportTo);
+		System.out.println(flight);
+		
+		flightService.updateFlightObjectById(id, flight, airportFrom, airportTo);
+		return "redirect:/flight/showAll";
+	}
+	
+	
+	
+	
+	
+	
+	
 }

@@ -2,7 +2,7 @@ package com.example.demo.services;
 
 import java.util.ArrayList;
 
-
+import com.example.demo.models.Airport;
 import com.example.demo.models.Flight;
 
 public interface IFlightService {
@@ -11,6 +11,9 @@ public interface IFlightService {
 	
 	//INSERT
 	boolean addFlightsByObject(Flight flight);
+	
+	//UPDATE
+	boolean updateFlightObjectById(int id, Flight flight, Airport airportFrom, Airport airportTo);
 	
 	//SELECT
 	ArrayList<Flight> showAllFlights();
