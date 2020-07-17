@@ -22,6 +22,7 @@
 				<li th:each="bpass : ${flights.boardingPasses}" th:text="'ID: '+${bpass.IDBPass}+' Seat:'+${bpass.seat}"></li>
 			</ul>
 			<a sec:authorize="hasRole('ADMIN')" th:href="@{'/flight/'+${flights.IDFlight}+'/delete'}" class="btn btn-danger">Delete Flight</a>
+			<a sec:authorize="hasRole('ADMIN')" th:href="@{'/flight/update/'+${flights.IDFlight}}" class="btn btn-warning">Update Flight</a>
 			<a sec:authorize="hasAnyRole('USER','ADMIN')" th:href="@{'/flight/'+${flights.IDFlight}+'/book'}" class="btn btn-success">Book Flight</a>
 		</div>
 	</div>
