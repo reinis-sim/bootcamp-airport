@@ -6,11 +6,18 @@ import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import com.example.demo.models.BoardingPass;
 import com.example.demo.models.Flight;
 import com.example.demo.models.Location;
 import com.example.demo.models.Luggage;
 import com.example.demo.repos.IBoardingPassRepo;
+
+import com.example.demo.models.Airport;
+import com.example.demo.models.Flight;
+import com.example.demo.models.Location;
+import com.example.demo.repos.IAirportRepo;
+
 import com.example.demo.repos.IFlightRepo;
 import com.example.demo.repos.ILuggageRepo;
 import com.example.demo.services.IFlightService;
@@ -20,10 +27,15 @@ public class FlightServiceImpl implements IFlightService {
 	
 	@Autowired
 	IFlightRepo flightRepo;
+
 	@Autowired
 	IBoardingPassRepo bpRepo;
 	@Autowired
 	ILuggageRepo luggRepo;
+	
+	@Autowired
+	IAirportRepo airportRepo;
+
 
 
 	@Override
@@ -87,6 +99,45 @@ public class FlightServiceImpl implements IFlightService {
 			}
 		}
 		return null;
+	}
+
+
+	public boolean updateFlightObjectById(int id, Flight flight, Airport airportFrom, Airport airportTo) {
+		if(id>0)
+		{
+			
+			if(flightRepo.existsById(id))
+			{
+				Flight flightToUpdate = flightRepo.findById(id).get();
+				flightToUpdate.setTime(flight.getTime());
+				flightToUpdate.setDuration(flight.getDuration());
+				
+				String[] testing = airportFrom.getTitle().split(",");
+				
+				Airport a1 = airportRepo.findByTitle(testing[0]);
+				
+				Airport a2 = airportRepo.findByTitle(testing[1]);
+				
+				ArrayList<Airport> airportsAll = new ArrayList<>();
+				
+				System.out.println(airportFrom.getTitle());
+				System.out.println(airportTo.getTitle());
+				
+				airportsAll.add(a1);
+				airportsAll.add(a2);
+				
+				flightToUpdate.setAirports(airportsAll);
+				
+				
+				
+				flightRepo.save(flightToUpdate);
+				
+				
+				return true;
+			}
+			
+		}
+		return false;
 	}
 
 

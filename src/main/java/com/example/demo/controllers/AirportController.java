@@ -93,6 +93,8 @@ public class AirportController {
 		try
 		{
 			Airport airportForUpdate = airportService.selectOneAirportById(id);
+			
+			System.out.println(airportForUpdate);
 			model.addAttribute("airport", airportForUpdate);
 			return "update-one-airport-page";
 		}

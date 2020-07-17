@@ -109,6 +109,12 @@ public class AirportServiceImpl implements IAirportService{
 			{
 				Airport airportToUpdate = airportRepo.findById(id).get();
 				airportToUpdate.setTitle(airport.getTitle());
+				
+				Location locToUpdate = locationRepo.findByCity(airportToUpdate.getLocation().getCity());
+				locToUpdate.setCity(airport.getLocation().getCity());
+				locationRepo.save(locToUpdate);
+				
+				airportToUpdate.setLocation(locToUpdate);
 				airportRepo.save(airportToUpdate);
 				return true;
 			}
